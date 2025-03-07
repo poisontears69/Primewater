@@ -32,13 +32,13 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
-            btnLogin = new Button();
             panel1 = new Panel();
             panel2 = new Panel();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            button2 = new Button();
+            btnForgot = new Button();
             button1 = new Button();
+            btnExit = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -74,22 +74,6 @@
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
-            // btnLogin
-            // 
-            btnLogin.BackColor = Color.FromArgb(4, 171, 237);
-            btnLogin.Cursor = Cursors.Hand;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(131, 438);
-            btnLogin.Margin = new Padding(0);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(200, 40);
-            btnLogin.TabIndex = 3;
-            btnLogin.Text = "LOGIN";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(4, 171, 237);
@@ -108,45 +92,62 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(107, 271);
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Cursor = Cursors.IBeam;
+            textBox1.Location = new Point(107, 278);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(245, 23);
+            textBox1.Size = new Size(245, 16);
             textBox1.TabIndex = 6;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(107, 338);
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Cursor = Cursors.IBeam;
+            textBox2.Location = new Point(107, 345);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(245, 23);
+            textBox2.Size = new Size(245, 16);
             textBox2.TabIndex = 6;
             // 
-            // button2
+            // btnForgot
             // 
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(165, 370);
-            button2.Name = "button2";
-            button2.Size = new Size(126, 23);
-            button2.TabIndex = 8;
-            button2.Text = "Forgot Password";
-            button2.UseVisualStyleBackColor = true;
+            btnForgot.FlatAppearance.BorderSize = 0;
+            btnForgot.FlatStyle = FlatStyle.Flat;
+            btnForgot.Location = new Point(167, 370);
+            btnForgot.Name = "btnForgot";
+            btnForgot.Size = new Size(126, 23);
+            btnForgot.TabIndex = 8;
+            btnForgot.Text = "Forgot Password";
+            btnForgot.UseVisualStyleBackColor = true;
+            btnForgot.Click += btnForgot_Click;
             // 
             // button1
             // 
-            button1.BackColor = Color.White;
+            button1.BackColor = Color.FromArgb(4, 171, 237);
             button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(4, 171, 237);
-            button1.Location = new Point(193, 478);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(131, 438);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
-            button1.Size = new Size(67, 32);
+            button1.Size = new Size(200, 40);
             button1.TabIndex = 3;
-            button1.Text = "Exit";
+            button1.Text = "LOGIN";
             button1.UseVisualStyleBackColor = false;
             button1.Click += btnLogin_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExit.Location = new Point(189, 481);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(76, 30);
+            btnExit.TabIndex = 9;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // Form1
             // 
@@ -154,13 +155,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(443, 680);
-            Controls.Add(button2);
+            Controls.Add(btnExit);
+            Controls.Add(btnForgot);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(button1);
-            Controls.Add(btnLogin);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -182,12 +183,12 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
-        private Button btnLogin;
         private Panel panel1;
         private Panel panel2;
         private TextBox textBox1;
         private TextBox textBox2;
-        private Button button2;
+        private Button btnForgot;
         private Button button1;
+        private Button btnExit;
     }
 }
