@@ -9,7 +9,19 @@ namespace Primewater
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            // Create an instance of the Dashboard form
+            dashboard dashboardForm = new dashboard();
 
+            //Change to check the username and password
+            //can also make a method to check username and password
+            if (true)
+            {
+                // Show the Dashboard form
+                dashboardForm.Show();
+            }
+            
+            // Optionally, hide the current login form
+            this.Hide();
         }
 
         private void label1_Click(object sender, EventArgs e)
