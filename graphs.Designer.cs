@@ -28,19 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
+            dateTimePicker1 = new DateTimePicker();
+            dateTimePicker2 = new DateTimePicker();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(55, 38);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 0;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Location = new Point(283, 38);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(200, 23);
+            dateTimePicker2.TabIndex = 1;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(55, 79);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(428, 488);
+            dataGridView1.TabIndex = 2;
             // 
             // graphs
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(843, 642);
+            Controls.Add(dataGridView1);
+            Controls.Add(dateTimePicker2);
+            Controls.Add(dateTimePicker1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "graphs";
             Text = "graphs";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
+        private DataGridView dataGridView1;
     }
 }

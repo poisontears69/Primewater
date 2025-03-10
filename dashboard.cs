@@ -57,10 +57,10 @@ namespace Primewater
         private void LoadDefaultForm()
         {
             // Load dashboard by default when the form opens
-            if (home == null)
-                home = new graphs();
+            if (capex == null)
+                capex = new capex();
 
-            LoadForm(home);
+            LoadForm(capex);
         }
 
         private void LoadForm(Form form)
@@ -171,6 +171,11 @@ namespace Primewater
             this.Close();
             // Optionally, show login form again
             new Form1().Show();
+        }
+
+        private void dashboard_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

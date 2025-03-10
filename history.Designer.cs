@@ -30,11 +30,14 @@
         {
             panel1 = new Panel();
             label1 = new Label();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
@@ -45,11 +48,21 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(347, 32);
+            label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(4, 171, 237);
+            label1.Location = new Point(334, 9);
             label1.Name = "label1";
-            label1.Size = new Size(45, 15);
+            label1.Size = new Size(131, 45);
             label1.TabIndex = 0;
             label1.Text = "History";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(39, 57);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(759, 454);
+            dataGridView1.TabIndex = 1;
             // 
             // history
             // 
@@ -62,6 +75,7 @@
             Text = "history";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -69,5 +83,6 @@
 
         private Panel panel1;
         private Label label1;
+        private DataGridView dataGridView1;
     }
 }

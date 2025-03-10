@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
-            btnDashboard = new Button();
             btnWarehouse = new Button();
             btnInventory = new Button();
             btnCapex = new Button();
@@ -42,38 +41,19 @@
             btnSettings = new Button();
             btnLogout = new Button();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            panel1 = new Panel();
-            panel2 = new Panel();
             panel3 = new Panel();
             panel4 = new Panel();
+            panel2 = new Panel();
             timer1 = new System.Windows.Forms.Timer(components);
             menuContainer.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel7.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.BackColor = Color.FromArgb(38, 69, 141);
-            btnDashboard.FlatAppearance.BorderSize = 0;
-            btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDashboard.ForeColor = Color.White;
-            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
-            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(0, 0);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(205, 60);
-            btnDashboard.TabIndex = 2;
-            btnDashboard.Text = "     Dashboard";
-            btnDashboard.UseVisualStyleBackColor = false;
-            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnWarehouse
             // 
@@ -134,7 +114,7 @@
             menuContainer.Controls.Add(panel5);
             menuContainer.Controls.Add(panel6);
             menuContainer.Controls.Add(panel7);
-            menuContainer.Location = new Point(3, 64);
+            menuContainer.Location = new Point(3, 3);
             menuContainer.Name = "menuContainer";
             menuContainer.Size = new Size(202, 183);
             menuContainer.TabIndex = 3;
@@ -223,7 +203,6 @@
             // flowLayoutPanel2
             // 
             flowLayoutPanel2.BackColor = Color.FromArgb(38, 69, 141);
-            flowLayoutPanel2.Controls.Add(panel1);
             flowLayoutPanel2.Controls.Add(menuContainer);
             flowLayoutPanel2.Controls.Add(panel2);
             flowLayoutPanel2.Controls.Add(panel3);
@@ -234,28 +213,10 @@
             flowLayoutPanel2.Size = new Size(205, 681);
             flowLayoutPanel2.TabIndex = 4;
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(btnDashboard);
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(205, 61);
-            panel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(btnHistory);
-            panel2.Location = new Point(0, 250);
-            panel2.Margin = new Padding(0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(205, 61);
-            panel2.TabIndex = 6;
-            // 
             // panel3
             // 
             panel3.Controls.Add(btnSettings);
-            panel3.Location = new Point(0, 311);
+            panel3.Location = new Point(0, 250);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
             panel3.Size = new Size(205, 61);
@@ -264,11 +225,20 @@
             // panel4
             // 
             panel4.Controls.Add(btnLogout);
-            panel4.Location = new Point(0, 372);
+            panel4.Location = new Point(0, 311);
             panel4.Margin = new Padding(0);
             panel4.Name = "panel4";
             panel4.Size = new Size(205, 61);
             panel4.TabIndex = 8;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btnHistory);
+            panel2.Location = new Point(0, 189);
+            panel2.Margin = new Padding(0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(205, 61);
+            panel2.TabIndex = 6;
             // 
             // timer1
             // 
@@ -283,20 +253,19 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "dashboard";
             Text = "Primewater";
+            Load += dashboard_Load;
             menuContainer.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel7.ResumeLayout(false);
             flowLayoutPanel2.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel4.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private Button btnDashboard;
         private Button btnWarehouse;
         private Button btnInventory;
         private Button btnCapex;
@@ -305,7 +274,6 @@
         private Button btnSettings;
         private Button btnLogout;
         private FlowLayoutPanel flowLayoutPanel2;
-        private Panel panel1;
         private Panel panel2;
         private Panel panel3;
         private Panel panel4;
