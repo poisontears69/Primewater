@@ -94,6 +94,8 @@
             // 
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Cursor = Cursors.IBeam;
+            textBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox1.ForeColor = Color.FromArgb(4, 171, 237);
             textBox1.Location = new Point(107, 278);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(245, 16);
@@ -103,8 +105,11 @@
             // 
             textBox2.BorderStyle = BorderStyle.None;
             textBox2.Cursor = Cursors.IBeam;
+            textBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox2.ForeColor = Color.FromArgb(4, 171, 237);
             textBox2.Location = new Point(107, 345);
             textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '*';
             textBox2.Size = new Size(245, 16);
             textBox2.TabIndex = 6;
             // 
@@ -186,9 +191,9 @@
         private Panel panel1;
         private Panel panel2;
         private TextBox textBox1;
-        private TextBox textBox2;
         private Button btnForgot;
         private Button button1;
         private Button btnExit;
+        private TextBox textBox2;
     }
 }

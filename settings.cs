@@ -10,11 +10,26 @@ using System.Windows.Forms;
 
 namespace Primewater
 {
-    public partial class settings: Form
+    public partial class settings : Form
     {
         public settings()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settings_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

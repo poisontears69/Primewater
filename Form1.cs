@@ -11,7 +11,6 @@ namespace Primewater
         {
             // Create an instance of the Dashboard form
             dashboard dashboardForm = new dashboard();
-
             //Change to check the username and password
             //can also make a method to check username and password
             if (true)
@@ -19,29 +18,36 @@ namespace Primewater
                 // Show the Dashboard form
                 dashboardForm.Show();
             }
-            
+
             // Optionally, hide the current login form
             this.Hide();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btnForgot_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+          
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to exit?",
+                "Confirm Exit",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

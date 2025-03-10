@@ -73,6 +73,7 @@
             btnDashboard.TabIndex = 2;
             btnDashboard.Text = "     Dashboard";
             btnDashboard.UseVisualStyleBackColor = false;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnWarehouse
             // 
@@ -94,7 +95,7 @@
             // 
             // btnInventory
             // 
-            btnInventory.BackColor = Color.FromArgb(120, 163, 201);
+            btnInventory.BackColor = Color.FromArgb(49, 77, 140);
             btnInventory.FlatAppearance.BorderSize = 0;
             btnInventory.FlatStyle = FlatStyle.Flat;
             btnInventory.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
@@ -108,10 +109,11 @@
             btnInventory.TabIndex = 2;
             btnInventory.Text = "      Inventory";
             btnInventory.UseVisualStyleBackColor = false;
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnCapex
             // 
-            btnCapex.BackColor = Color.FromArgb(120, 163, 201);
+            btnCapex.BackColor = Color.FromArgb(49, 77, 140);
             btnCapex.FlatAppearance.BorderSize = 0;
             btnCapex.FlatStyle = FlatStyle.Flat;
             btnCapex.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
@@ -134,7 +136,7 @@
             menuContainer.Controls.Add(panel7);
             menuContainer.Location = new Point(3, 64);
             menuContainer.Name = "menuContainer";
-            menuContainer.Size = new Size(205, 60);
+            menuContainer.Size = new Size(202, 183);
             menuContainer.TabIndex = 3;
             // 
             // panel5
@@ -180,6 +182,7 @@
             btnHistory.TabIndex = 2;
             btnHistory.Text = "     History";
             btnHistory.UseVisualStyleBackColor = false;
+            btnHistory.Click += btnHistory_Click;
             // 
             // btnSettings
             // 
@@ -215,6 +218,7 @@
             btnLogout.TabIndex = 2;
             btnLogout.Text = "     Logout";
             btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // flowLayoutPanel2
             // 
@@ -242,7 +246,7 @@
             // panel2
             // 
             panel2.Controls.Add(btnHistory);
-            panel2.Location = new Point(0, 127);
+            panel2.Location = new Point(0, 250);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
             panel2.Size = new Size(205, 61);
@@ -251,7 +255,7 @@
             // panel3
             // 
             panel3.Controls.Add(btnSettings);
-            panel3.Location = new Point(0, 188);
+            panel3.Location = new Point(0, 311);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
             panel3.Size = new Size(205, 61);
@@ -260,7 +264,7 @@
             // panel4
             // 
             panel4.Controls.Add(btnLogout);
-            panel4.Location = new Point(0, 249);
+            panel4.Location = new Point(0, 372);
             panel4.Margin = new Padding(0);
             panel4.Name = "panel4";
             panel4.Size = new Size(205, 61);
