@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel10 = new Panel();
             panel11 = new Panel();
             panel1 = new Panel();
+            dataGridView1 = new DataGridView();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            modifyToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
+            dataGridView2 = new DataGridView();
+            contextMenuStrip2 = new ContextMenuStrip(components);
+            modifyToolStripMenuItem1 = new ToolStripMenuItem();
+            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             panel13 = new Panel();
             panel9 = new Panel();
             panel8 = new Panel();
@@ -42,15 +51,15 @@
             textBox7 = new TextBox();
             textBox6 = new TextBox();
             textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            itemDescTB = new TextBox();
+            itemCodeTB = new TextBox();
+            jobDescTB = new TextBox();
+            jobCodeTB = new TextBox();
             panel2 = new Panel();
             button3 = new Button();
-            button2 = new Button();
+            btnSaveItem = new Button();
             panel12 = new Panel();
-            button1 = new Button();
+            btnSaveJobType = new Button();
             label10 = new Label();
             label11 = new Label();
             label9 = new Label();
@@ -61,7 +70,12 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            contextMenuStrip2.SuspendLayout();
             SuspendLayout();
             // 
             // panel10
@@ -83,6 +97,8 @@
             // panel1
             // 
             panel1.AutoScroll = true;
+            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(dataGridView2);
             panel1.Controls.Add(panel13);
             panel1.Controls.Add(panel9);
             panel1.Controls.Add(panel8);
@@ -94,15 +110,15 @@
             panel1.Controls.Add(textBox7);
             panel1.Controls.Add(textBox6);
             panel1.Controls.Add(textBox5);
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(textBox3);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(itemDescTB);
+            panel1.Controls.Add(itemCodeTB);
+            panel1.Controls.Add(jobDescTB);
+            panel1.Controls.Add(jobCodeTB);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btnSaveItem);
             panel1.Controls.Add(panel12);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnSaveJobType);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label11);
             panel1.Controls.Add(label9);
@@ -119,6 +135,75 @@
             panel1.Size = new Size(843, 642);
             panel1.TabIndex = 17;
             panel1.Paint += panel1_Paint;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.ContextMenuStrip = contextMenuStrip1;
+            dataGridView1.Location = new Point(447, 22);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(326, 231);
+            dataGridView1.TabIndex = 48;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { modifyToolStripMenuItem, deleteToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(113, 48);
+            // 
+            // modifyToolStripMenuItem
+            // 
+            modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
+            modifyToolStripMenuItem.Size = new Size(112, 22);
+            modifyToolStripMenuItem.Text = "Modify";
+            modifyToolStripMenuItem.Click += modifyToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(112, 22);
+            deleteToolStripMenuItem.Text = "Delete";
+            deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.ContextMenuStrip = contextMenuStrip2;
+            dataGridView2.Location = new Point(447, 314);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.ReadOnly = true;
+            dataGridView2.RowHeadersVisible = false;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView2.Size = new Size(326, 231);
+            dataGridView2.TabIndex = 47;
+            // 
+            // contextMenuStrip2
+            // 
+            contextMenuStrip2.Items.AddRange(new ToolStripItem[] { modifyToolStripMenuItem1, deleteToolStripMenuItem1 });
+            contextMenuStrip2.Name = "contextMenuStrip2";
+            contextMenuStrip2.Size = new Size(113, 48);
+            // 
+            // modifyToolStripMenuItem1
+            // 
+            modifyToolStripMenuItem1.Name = "modifyToolStripMenuItem1";
+            modifyToolStripMenuItem1.Size = new Size(112, 22);
+            modifyToolStripMenuItem1.Text = "Modify";
+            modifyToolStripMenuItem1.Click += modifyToolStripMenuItem1_Click;
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            deleteToolStripMenuItem1.Size = new Size(112, 22);
+            deleteToolStripMenuItem1.Text = "Delete";
+            deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click_1;
             // 
             // panel13
             // 
@@ -154,7 +239,7 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(4, 171, 237);
-            panel6.Location = new Point(345, 465);
+            panel6.Location = new Point(216, 463);
             panel6.Name = "panel6";
             panel6.Size = new Size(196, 1);
             panel6.TabIndex = 41;
@@ -162,7 +247,7 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(4, 171, 237);
-            panel5.Location = new Point(345, 415);
+            panel5.Location = new Point(216, 413);
             panel5.Name = "panel5";
             panel5.Size = new Size(196, 1);
             panel5.TabIndex = 40;
@@ -170,7 +255,7 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(4, 171, 237);
-            panel4.Location = new Point(345, 236);
+            panel4.Location = new Point(216, 234);
             panel4.Name = "panel4";
             panel4.Size = new Size(196, 1);
             panel4.TabIndex = 39;
@@ -178,7 +263,7 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(4, 171, 237);
-            panel3.Location = new Point(345, 173);
+            panel3.Location = new Point(216, 171);
             panel3.Name = "panel3";
             panel3.Size = new Size(196, 1);
             panel3.TabIndex = 38;
@@ -207,37 +292,41 @@
             textBox5.Size = new Size(196, 16);
             textBox5.TabIndex = 35;
             // 
-            // textBox4
+            // itemDescTB
             // 
-            textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Location = new Point(347, 447);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(196, 16);
-            textBox4.TabIndex = 34;
+            itemDescTB.BorderStyle = BorderStyle.None;
+            itemDescTB.Location = new Point(218, 445);
+            itemDescTB.Name = "itemDescTB";
+            itemDescTB.Size = new Size(196, 16);
+            itemDescTB.TabIndex = 34;
+            itemDescTB.TextChanged += itemDescTB_TextChanged;
             // 
-            // textBox3
+            // itemCodeTB
             // 
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Location = new Point(347, 397);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(196, 16);
-            textBox3.TabIndex = 33;
+            itemCodeTB.BorderStyle = BorderStyle.None;
+            itemCodeTB.Location = new Point(218, 395);
+            itemCodeTB.Name = "itemCodeTB";
+            itemCodeTB.Size = new Size(196, 16);
+            itemCodeTB.TabIndex = 33;
+            itemCodeTB.TextChanged += itemCodeTB_TextChanged;
             // 
-            // textBox2
+            // jobDescTB
             // 
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Location = new Point(347, 218);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(196, 16);
-            textBox2.TabIndex = 32;
+            jobDescTB.BorderStyle = BorderStyle.None;
+            jobDescTB.Location = new Point(218, 216);
+            jobDescTB.Name = "jobDescTB";
+            jobDescTB.Size = new Size(196, 16);
+            jobDescTB.TabIndex = 32;
+            jobDescTB.TextChanged += jobDescTB_TextChanged;
             // 
-            // textBox1
+            // jobCodeTB
             // 
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(345, 155);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(196, 16);
-            textBox1.TabIndex = 44;
+            jobCodeTB.BorderStyle = BorderStyle.None;
+            jobCodeTB.Location = new Point(216, 153);
+            jobCodeTB.Name = "jobCodeTB";
+            jobCodeTB.Size = new Size(196, 16);
+            jobCodeTB.TabIndex = 44;
+            jobCodeTB.TextChanged += jobCodeTB_TextChanged;
             // 
             // panel2
             // 
@@ -261,19 +350,20 @@
             button3.Text = "Save";
             button3.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnSaveItem
             // 
-            button2.BackColor = Color.FromArgb(4, 171, 237);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(399, 511);
-            button2.Name = "button2";
-            button2.Size = new Size(86, 27);
-            button2.TabIndex = 28;
-            button2.Text = "Save";
-            button2.UseVisualStyleBackColor = false;
+            btnSaveItem.BackColor = Color.FromArgb(4, 171, 237);
+            btnSaveItem.FlatAppearance.BorderSize = 0;
+            btnSaveItem.FlatStyle = FlatStyle.Flat;
+            btnSaveItem.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSaveItem.ForeColor = Color.White;
+            btnSaveItem.Location = new Point(270, 509);
+            btnSaveItem.Name = "btnSaveItem";
+            btnSaveItem.Size = new Size(86, 27);
+            btnSaveItem.TabIndex = 28;
+            btnSaveItem.Text = "Save";
+            btnSaveItem.UseVisualStyleBackColor = false;
+            btnSaveItem.Click += btnSaveItem_Click;
             // 
             // panel12
             // 
@@ -283,19 +373,20 @@
             panel12.Size = new Size(676, 1);
             panel12.TabIndex = 30;
             // 
-            // button1
+            // btnSaveJobType
             // 
-            button1.BackColor = Color.FromArgb(4, 171, 237);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(397, 258);
-            button1.Name = "button1";
-            button1.Size = new Size(86, 27);
-            button1.TabIndex = 27;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = false;
+            btnSaveJobType.BackColor = Color.FromArgb(4, 171, 237);
+            btnSaveJobType.FlatAppearance.BorderSize = 0;
+            btnSaveJobType.FlatStyle = FlatStyle.Flat;
+            btnSaveJobType.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSaveJobType.ForeColor = Color.White;
+            btnSaveJobType.Location = new Point(268, 256);
+            btnSaveJobType.Name = "btnSaveJobType";
+            btnSaveJobType.Size = new Size(86, 27);
+            btnSaveJobType.TabIndex = 27;
+            btnSaveJobType.Text = "Save";
+            btnSaveJobType.UseVisualStyleBackColor = false;
+            btnSaveJobType.Click += btnSaveJobType_Click;
             // 
             // label10
             // 
@@ -313,7 +404,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Arial", 18F, FontStyle.Bold);
             label11.ForeColor = Color.FromArgb(4, 171, 237);
-            label11.Location = new Point(347, 333);
+            label11.Location = new Point(218, 331);
             label11.Name = "label11";
             label11.Size = new Size(170, 29);
             label11.TabIndex = 25;
@@ -357,7 +448,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label5.ForeColor = Color.FromArgb(4, 171, 237);
-            label5.Location = new Point(194, 447);
+            label5.Location = new Point(65, 445);
             label5.Name = "label5";
             label5.Size = new Size(128, 18);
             label5.TabIndex = 21;
@@ -368,7 +459,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label4.ForeColor = Color.FromArgb(4, 171, 237);
-            label4.Location = new Point(194, 393);
+            label4.Location = new Point(65, 391);
             label4.Name = "label4";
             label4.Size = new Size(84, 18);
             label4.TabIndex = 20;
@@ -379,7 +470,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label3.ForeColor = Color.FromArgb(4, 171, 237);
-            label3.Location = new Point(194, 218);
+            label3.Location = new Point(65, 216);
             label3.Name = "label3";
             label3.Size = new Size(124, 18);
             label3.TabIndex = 19;
@@ -390,7 +481,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(4, 171, 237);
-            label2.Location = new Point(194, 150);
+            label2.Location = new Point(65, 148);
             label2.Name = "label2";
             label2.Size = new Size(80, 18);
             label2.TabIndex = 18;
@@ -401,11 +492,18 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 18F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(4, 171, 237);
-            label1.Location = new Point(338, 88);
+            label1.Location = new Point(209, 86);
             label1.Name = "label1";
             label1.Size = new Size(220, 29);
             label1.TabIndex = 17;
             label1.Text = "Add new Job type";
+            // 
+            // mySqlCommand1
+            // 
+            mySqlCommand1.CacheAge = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.EnableCaching = false;
+            mySqlCommand1.Transaction = null;
             // 
             // settings
             // 
@@ -422,6 +520,10 @@
             Load += settings_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            contextMenuStrip2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -439,15 +541,15 @@
         private TextBox textBox7;
         private TextBox textBox6;
         private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox itemDescTB;
+        private TextBox itemCodeTB;
+        private TextBox jobDescTB;
+        private TextBox jobCodeTB;
         private Panel panel2;
         private Button button3;
-        private Button button2;
+        private Button btnSaveItem;
         private Panel panel12;
-        private Button button1;
+        private Button btnSaveJobType;
         private Label label10;
         private Label label11;
         private Label label9;
@@ -459,5 +561,14 @@
         private Label label2;
         private Label label1;
         private Panel panel13;
+        private DataGridView dataGridView2;
+        private DataGridView dataGridView1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem modifyToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
+        private ContextMenuStrip contextMenuStrip2;
+        private ToolStripMenuItem modifyToolStripMenuItem1;
+        private ToolStripMenuItem deleteToolStripMenuItem1;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
     }
 }

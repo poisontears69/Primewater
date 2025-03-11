@@ -112,6 +112,7 @@
             textBox2.PasswordChar = '*';
             textBox2.Size = new Size(245, 16);
             textBox2.TabIndex = 6;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // btnForgot
             // 
