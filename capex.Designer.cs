@@ -37,7 +37,7 @@
             textBox12 = new TextBox();
             label13 = new Label();
             groupBox2 = new GroupBox();
-            dateTimePicker2 = new DateTimePicker();
+            issuanceDatePicker = new DateTimePicker();
             dataGridView1 = new DataGridView();
             textBox11 = new TextBox();
             button9 = new Button();
@@ -58,17 +58,17 @@
             label8 = new Label();
             panel8 = new Panel();
             groupBox1 = new GroupBox();
-            dateTimePicker1 = new DateTimePicker();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            receivingItemCodeComboBox = new ComboBox();
+            receivingDatePicker = new DateTimePicker();
+            receivingQuantityTextBox = new TextBox();
+            receivingItemDescriptionTextBox = new TextBox();
+            grnumberTextBox = new TextBox();
             panel6 = new Panel();
             panel5 = new Panel();
             panel4 = new Panel();
             panel3 = new Panel();
-            button1 = new Button();
-            button2 = new Button();
+            receivingClearBtn = new Button();
+            receivingSaveBtn = new Button();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
@@ -179,7 +179,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(dateTimePicker2);
+            groupBox2.Controls.Add(issuanceDatePicker);
             groupBox2.Controls.Add(dataGridView1);
             groupBox2.Controls.Add(textBox11);
             groupBox2.Controls.Add(button9);
@@ -208,14 +208,14 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Issuance";
             // 
-            // dateTimePicker2
+            // issuanceDatePicker
             // 
-            dateTimePicker2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(154, 42);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(123, 27);
-            dateTimePicker2.TabIndex = 23;
+            issuanceDatePicker.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            issuanceDatePicker.Format = DateTimePickerFormat.Short;
+            issuanceDatePicker.Location = new Point(154, 42);
+            issuanceDatePicker.Name = "issuanceDatePicker";
+            issuanceDatePicker.Size = new Size(206, 27);
+            issuanceDatePicker.TabIndex = 23;
             // 
             // dataGridView1
             // 
@@ -227,7 +227,7 @@
             // 
             // textBox11
             // 
-            textBox11.BorderStyle = BorderStyle.None;
+            textBox11.BorderStyle = BorderStyle.FixedSingle;
             textBox11.Cursor = Cursors.IBeam;
             textBox11.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox11.Location = new Point(403, 50);
@@ -406,17 +406,17 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(dateTimePicker1);
-            groupBox1.Controls.Add(textBox5);
-            groupBox1.Controls.Add(textBox4);
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(receivingItemCodeComboBox);
+            groupBox1.Controls.Add(receivingDatePicker);
+            groupBox1.Controls.Add(receivingQuantityTextBox);
+            groupBox1.Controls.Add(receivingItemDescriptionTextBox);
+            groupBox1.Controls.Add(grnumberTextBox);
             groupBox1.Controls.Add(panel6);
             groupBox1.Controls.Add(panel5);
             groupBox1.Controls.Add(panel4);
             groupBox1.Controls.Add(panel3);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(receivingClearBtn);
+            groupBox1.Controls.Add(receivingSaveBtn);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
@@ -431,54 +431,53 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Receiving";
             // 
-            // dateTimePicker1
+            // receivingItemCodeComboBox
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(160, 41);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(123, 27);
-            dateTimePicker1.TabIndex = 23;
+            receivingItemCodeComboBox.FormattingEnabled = true;
+            receivingItemCodeComboBox.Location = new Point(160, 150);
+            receivingItemCodeComboBox.Name = "receivingItemCodeComboBox";
+            receivingItemCodeComboBox.Size = new Size(200, 33);
+            receivingItemCodeComboBox.TabIndex = 24;
             // 
-            // textBox5
+            // receivingDatePicker
             // 
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.Cursor = Cursors.IBeam;
-            textBox5.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(160, 275);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(200, 15);
-            textBox5.TabIndex = 22;
+            receivingDatePicker.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            receivingDatePicker.Format = DateTimePickerFormat.Short;
+            receivingDatePicker.Location = new Point(160, 41);
+            receivingDatePicker.Name = "receivingDatePicker";
+            receivingDatePicker.Size = new Size(200, 27);
+            receivingDatePicker.TabIndex = 23;
             // 
-            // textBox4
+            // receivingQuantityTextBox
             // 
-            textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Cursor = Cursors.IBeam;
-            textBox4.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(160, 221);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(200, 15);
-            textBox4.TabIndex = 21;
+            receivingQuantityTextBox.BorderStyle = BorderStyle.None;
+            receivingQuantityTextBox.Cursor = Cursors.IBeam;
+            receivingQuantityTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            receivingQuantityTextBox.Location = new Point(160, 275);
+            receivingQuantityTextBox.Name = "receivingQuantityTextBox";
+            receivingQuantityTextBox.Size = new Size(200, 15);
+            receivingQuantityTextBox.TabIndex = 22;
             // 
-            // textBox3
+            // receivingItemDescriptionTextBox
             // 
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Cursor = Cursors.IBeam;
-            textBox3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(160, 166);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(200, 15);
-            textBox3.TabIndex = 20;
+            receivingItemDescriptionTextBox.BorderStyle = BorderStyle.None;
+            receivingItemDescriptionTextBox.Cursor = Cursors.IBeam;
+            receivingItemDescriptionTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            receivingItemDescriptionTextBox.Location = new Point(160, 221);
+            receivingItemDescriptionTextBox.Name = "receivingItemDescriptionTextBox";
+            receivingItemDescriptionTextBox.Size = new Size(200, 15);
+            receivingItemDescriptionTextBox.TabIndex = 21;
             // 
-            // textBox2
+            // grnumberTextBox
             // 
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Cursor = Cursors.IBeam;
-            textBox2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(160, 118);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(200, 15);
-            textBox2.TabIndex = 19;
+            grnumberTextBox.BorderStyle = BorderStyle.None;
+            grnumberTextBox.Cursor = Cursors.IBeam;
+            grnumberTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grnumberTextBox.Location = new Point(160, 118);
+            grnumberTextBox.Name = "grnumberTextBox";
+            grnumberTextBox.Size = new Size(200, 15);
+            grnumberTextBox.TabIndex = 19;
+            grnumberTextBox.TextChanged += grnumberTextBox_TextChanged;
             // 
             // panel6
             // 
@@ -512,33 +511,35 @@
             panel3.Size = new Size(200, 1);
             panel3.TabIndex = 14;
             // 
-            // button1
+            // receivingClearBtn
             // 
-            button1.BackColor = Color.FromArgb(49, 77, 140);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(673, 135);
-            button1.Name = "button1";
-            button1.Size = new Size(72, 28);
-            button1.TabIndex = 12;
-            button1.Text = "Clear";
-            button1.UseVisualStyleBackColor = false;
+            receivingClearBtn.BackColor = Color.FromArgb(49, 77, 140);
+            receivingClearBtn.FlatAppearance.BorderSize = 0;
+            receivingClearBtn.FlatStyle = FlatStyle.Flat;
+            receivingClearBtn.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            receivingClearBtn.ForeColor = Color.White;
+            receivingClearBtn.Location = new Point(673, 135);
+            receivingClearBtn.Name = "receivingClearBtn";
+            receivingClearBtn.Size = new Size(72, 28);
+            receivingClearBtn.TabIndex = 12;
+            receivingClearBtn.Text = "Clear";
+            receivingClearBtn.UseVisualStyleBackColor = false;
+            receivingClearBtn.Click += receivingClearBtn_Click;
             // 
-            // button2
+            // receivingSaveBtn
             // 
-            button2.BackColor = Color.FromArgb(4, 171, 237);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(488, 135);
-            button2.Name = "button2";
-            button2.Size = new Size(72, 28);
-            button2.TabIndex = 11;
-            button2.Text = "Save";
-            button2.UseVisualStyleBackColor = false;
+            receivingSaveBtn.BackColor = Color.FromArgb(4, 171, 237);
+            receivingSaveBtn.FlatAppearance.BorderSize = 0;
+            receivingSaveBtn.FlatStyle = FlatStyle.Flat;
+            receivingSaveBtn.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            receivingSaveBtn.ForeColor = Color.White;
+            receivingSaveBtn.Location = new Point(488, 135);
+            receivingSaveBtn.Name = "receivingSaveBtn";
+            receivingSaveBtn.Size = new Size(72, 28);
+            receivingSaveBtn.TabIndex = 11;
+            receivingSaveBtn.Text = "Save";
+            receivingSaveBtn.UseVisualStyleBackColor = false;
+            receivingSaveBtn.Click += receivingSaveBtn_Click;
             // 
             // label6
             // 
@@ -631,16 +632,15 @@
         private GroupBox groupBox2;
         private GroupBox groupBox1;
         private Label label1;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox receivingQuantityTextBox;
+        private TextBox receivingItemDescriptionTextBox;
+        private TextBox grnumberTextBox;
         private Panel panel6;
         private Panel panel5;
         private Panel panel4;
         private Panel panel3;
-        private Button button1;
-        private Button button2;
+        private Button receivingClearBtn;
+        private Button receivingSaveBtn;
         private Label label6;
         private Label label5;
         private Label label4;
@@ -671,7 +671,8 @@
         private Button button6;
         private Label label12;
         private Panel panel12;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker receivingDatePicker;
+        private DateTimePicker issuanceDatePicker;
+        private ComboBox receivingItemCodeComboBox;
     }
 }
