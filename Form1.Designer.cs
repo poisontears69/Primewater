@@ -36,9 +36,10 @@
             panel2 = new Panel();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            btnForgot = new Button();
             button1 = new Button();
             btnExit = new Button();
+            btnCreateAccount = new Button();
+            btnAdminLogin = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -100,6 +101,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(245, 16);
             textBox1.TabIndex = 6;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -113,18 +115,6 @@
             textBox2.Size = new Size(245, 16);
             textBox2.TabIndex = 6;
             textBox2.TextChanged += textBox2_TextChanged;
-            // 
-            // btnForgot
-            // 
-            btnForgot.FlatAppearance.BorderSize = 0;
-            btnForgot.FlatStyle = FlatStyle.Flat;
-            btnForgot.Location = new Point(167, 370);
-            btnForgot.Name = "btnForgot";
-            btnForgot.Size = new Size(126, 23);
-            btnForgot.TabIndex = 8;
-            btnForgot.Text = "Forgot Password";
-            btnForgot.UseVisualStyleBackColor = true;
-            btnForgot.Click += btnForgot_Click;
             // 
             // button1
             // 
@@ -155,14 +145,39 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
+            // btnCreateAccount
+            // 
+            btnCreateAccount.FlatAppearance.BorderSize = 0;
+            btnCreateAccount.FlatStyle = FlatStyle.Flat;
+            btnCreateAccount.Location = new Point(167, 370);
+            btnCreateAccount.Name = "btnCreateAccount";
+            btnCreateAccount.Size = new Size(126, 23);
+            btnCreateAccount.TabIndex = 8;
+            btnCreateAccount.Text = "Create Account";
+            btnCreateAccount.UseVisualStyleBackColor = true;
+            btnCreateAccount.Click += btnForgot_Click;
+            // 
+            // btnAdminLogin
+            // 
+            btnAdminLogin.FlatAppearance.BorderSize = 0;
+            btnAdminLogin.FlatStyle = FlatStyle.Flat;
+            btnAdminLogin.Location = new Point(356, 645);
+            btnAdminLogin.Name = "btnAdminLogin";
+            btnAdminLogin.Size = new Size(75, 23);
+            btnAdminLogin.TabIndex = 10;
+            btnAdminLogin.Text = "Admin";
+            btnAdminLogin.UseVisualStyleBackColor = true;
+            btnAdminLogin.Click += btnAdminLogin_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(443, 680);
+            Controls.Add(btnAdminLogin);
             Controls.Add(btnExit);
-            Controls.Add(btnForgot);
+            Controls.Add(btnCreateAccount);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(panel2);
@@ -192,9 +207,10 @@
         private Panel panel1;
         private Panel panel2;
         private TextBox textBox1;
-        private Button btnForgot;
         private Button button1;
         private Button btnExit;
         private TextBox textBox2;
+        private Button btnCreateAccount;
+        private Button btnAdminLogin;
     }
 }

@@ -31,25 +31,25 @@
             panel1 = new Panel();
             label1 = new Label();
             groupBox3 = new GroupBox();
-            dataGridView2 = new DataGridView();
-            button8 = new Button();
-            button5 = new Button();
+            dataGridViewStock = new DataGridView();
+            btnResetStock = new Button();
+            btnSearchStock = new Button();
             panel13 = new Panel();
-            textBox12 = new TextBox();
+            searchTextBox = new TextBox();
             label13 = new Label();
             groupBox2 = new GroupBox();
-            dateTimePicker2 = new DateTimePicker();
-            dataGridView1 = new DataGridView();
-            textBox11 = new TextBox();
-            button9 = new Button();
-            button6 = new Button();
+            IssuanceDateTimePicker = new DateTimePicker();
+            dataGridViewIssuance = new DataGridView();
+            remarksTextBox = new TextBox();
+            issuanceBtnClear = new Button();
+            issuanceBtnSave = new Button();
             label12 = new Label();
             panel12 = new Panel();
             label7 = new Label();
-            textBox10 = new TextBox();
+            meterNumber = new TextBox();
             textBox9 = new TextBox();
-            textBox8 = new TextBox();
-            textBox7 = new TextBox();
+            joNumber = new TextBox();
+            giNumber = new TextBox();
             label11 = new Label();
             label10 = new Label();
             panel11 = new Panel();
@@ -59,27 +59,28 @@
             label8 = new Label();
             panel8 = new Panel();
             groupBox1 = new GroupBox();
-            dateTimePicker1 = new DateTimePicker();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            inventoryDateTimePicker = new DateTimePicker();
+            quantityTextBox = new TextBox();
+            itemDescriptionTextBox = new TextBox();
+            grNumberTextBox = new TextBox();
             panel6 = new Panel();
             panel5 = new Panel();
             panel4 = new Panel();
             panel3 = new Panel();
-            button1 = new Button();
-            button2 = new Button();
+            clearBtnReceiving = new Button();
+            saveBtn = new Button();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            inventoryItemCode = new ComboBox();
+            joTypeComboBox = new ComboBox();
             panel1.SuspendLayout();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewStock).BeginInit();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewIssuance).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -110,11 +111,11 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(dataGridView2);
-            groupBox3.Controls.Add(button8);
-            groupBox3.Controls.Add(button5);
+            groupBox3.Controls.Add(dataGridViewStock);
+            groupBox3.Controls.Add(btnResetStock);
+            groupBox3.Controls.Add(btnSearchStock);
             groupBox3.Controls.Add(panel13);
-            groupBox3.Controls.Add(textBox12);
+            groupBox3.Controls.Add(searchTextBox);
             groupBox3.Controls.Add(label13);
             groupBox3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             groupBox3.ForeColor = Color.FromArgb(4, 171, 237);
@@ -125,41 +126,43 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Stock";
             // 
-            // dataGridView2
+            // dataGridViewStock
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(19, 32);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(541, 291);
-            dataGridView2.TabIndex = 8;
+            dataGridViewStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewStock.Location = new Point(19, 32);
+            dataGridViewStock.Name = "dataGridViewStock";
+            dataGridViewStock.Size = new Size(541, 291);
+            dataGridViewStock.TabIndex = 8;
             // 
-            // button8
+            // btnResetStock
             // 
-            button8.BackColor = Color.FromArgb(49, 77, 140);
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.ForeColor = Color.White;
-            button8.Location = new Point(716, 91);
-            button8.Name = "button8";
-            button8.Size = new Size(72, 28);
-            button8.TabIndex = 6;
-            button8.Text = "Reset";
-            button8.UseVisualStyleBackColor = false;
+            btnResetStock.BackColor = Color.FromArgb(49, 77, 140);
+            btnResetStock.FlatAppearance.BorderSize = 0;
+            btnResetStock.FlatStyle = FlatStyle.Flat;
+            btnResetStock.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnResetStock.ForeColor = Color.White;
+            btnResetStock.Location = new Point(716, 91);
+            btnResetStock.Name = "btnResetStock";
+            btnResetStock.Size = new Size(72, 28);
+            btnResetStock.TabIndex = 6;
+            btnResetStock.Text = "Reset";
+            btnResetStock.UseVisualStyleBackColor = false;
+            btnResetStock.Click += btnResetStock_Click;
             // 
-            // button5
+            // btnSearchStock
             // 
-            button5.BackColor = Color.FromArgb(4, 171, 237);
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(588, 91);
-            button5.Name = "button5";
-            button5.Size = new Size(72, 28);
-            button5.TabIndex = 7;
-            button5.Text = "Save";
-            button5.UseVisualStyleBackColor = false;
+            btnSearchStock.BackColor = Color.FromArgb(4, 171, 237);
+            btnSearchStock.FlatAppearance.BorderSize = 0;
+            btnSearchStock.FlatStyle = FlatStyle.Flat;
+            btnSearchStock.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSearchStock.ForeColor = Color.White;
+            btnSearchStock.Location = new Point(588, 91);
+            btnSearchStock.Name = "btnSearchStock";
+            btnSearchStock.Size = new Size(72, 28);
+            btnSearchStock.TabIndex = 7;
+            btnSearchStock.Text = "Search";
+            btnSearchStock.UseVisualStyleBackColor = false;
+            btnSearchStock.Click += btnSearchStock_Click;
             // 
             // panel13
             // 
@@ -169,15 +172,15 @@
             panel13.Size = new Size(200, 1);
             panel13.TabIndex = 9;
             // 
-            // textBox12
+            // searchTextBox
             // 
-            textBox12.BorderStyle = BorderStyle.None;
-            textBox12.Cursor = Cursors.IBeam;
-            textBox12.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox12.Location = new Point(588, 58);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(200, 15);
-            textBox12.TabIndex = 10;
+            searchTextBox.BorderStyle = BorderStyle.None;
+            searchTextBox.Cursor = Cursors.IBeam;
+            searchTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchTextBox.Location = new Point(588, 58);
+            searchTextBox.Name = "searchTextBox";
+            searchTextBox.Size = new Size(200, 15);
+            searchTextBox.TabIndex = 10;
             // 
             // label13
             // 
@@ -191,18 +194,19 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(dateTimePicker2);
-            groupBox2.Controls.Add(dataGridView1);
-            groupBox2.Controls.Add(textBox11);
-            groupBox2.Controls.Add(button9);
-            groupBox2.Controls.Add(button6);
+            groupBox2.Controls.Add(joTypeComboBox);
+            groupBox2.Controls.Add(IssuanceDateTimePicker);
+            groupBox2.Controls.Add(dataGridViewIssuance);
+            groupBox2.Controls.Add(remarksTextBox);
+            groupBox2.Controls.Add(issuanceBtnClear);
+            groupBox2.Controls.Add(issuanceBtnSave);
             groupBox2.Controls.Add(label12);
             groupBox2.Controls.Add(panel12);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(textBox10);
+            groupBox2.Controls.Add(meterNumber);
             groupBox2.Controls.Add(textBox9);
-            groupBox2.Controls.Add(textBox8);
-            groupBox2.Controls.Add(textBox7);
+            groupBox2.Controls.Add(joNumber);
+            groupBox2.Controls.Add(giNumber);
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(panel11);
@@ -220,61 +224,63 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Issuance";
             // 
-            // dateTimePicker2
+            // IssuanceDateTimePicker
             // 
-            dateTimePicker2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(154, 42);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(123, 27);
-            dateTimePicker2.TabIndex = 23;
+            IssuanceDateTimePicker.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            IssuanceDateTimePicker.Format = DateTimePickerFormat.Short;
+            IssuanceDateTimePicker.Location = new Point(154, 42);
+            IssuanceDateTimePicker.Name = "IssuanceDateTimePicker";
+            IssuanceDateTimePicker.Size = new Size(123, 27);
+            IssuanceDateTimePicker.TabIndex = 23;
             // 
-            // dataGridView1
+            // dataGridViewIssuance
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(381, 121);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(299, 188);
-            dataGridView1.TabIndex = 31;
+            dataGridViewIssuance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewIssuance.Location = new Point(381, 121);
+            dataGridViewIssuance.Name = "dataGridViewIssuance";
+            dataGridViewIssuance.Size = new Size(299, 188);
+            dataGridViewIssuance.TabIndex = 31;
             // 
-            // textBox11
+            // remarksTextBox
             // 
-            textBox11.BorderStyle = BorderStyle.None;
-            textBox11.Cursor = Cursors.IBeam;
-            textBox11.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox11.Location = new Point(403, 50);
-            textBox11.Multiline = true;
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(257, 60);
-            textBox11.TabIndex = 30;
+            remarksTextBox.BorderStyle = BorderStyle.FixedSingle;
+            remarksTextBox.Cursor = Cursors.IBeam;
+            remarksTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            remarksTextBox.Location = new Point(403, 50);
+            remarksTextBox.Multiline = true;
+            remarksTextBox.Name = "remarksTextBox";
+            remarksTextBox.Size = new Size(257, 60);
+            remarksTextBox.TabIndex = 30;
             // 
-            // button9
+            // issuanceBtnClear
             // 
-            button9.BackColor = Color.FromArgb(49, 77, 140);
-            button9.FlatAppearance.BorderSize = 0;
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button9.ForeColor = Color.White;
-            button9.Location = new Point(707, 211);
-            button9.Name = "button9";
-            button9.Size = new Size(72, 28);
-            button9.TabIndex = 27;
-            button9.Text = "Clear";
-            button9.UseVisualStyleBackColor = false;
+            issuanceBtnClear.BackColor = Color.FromArgb(49, 77, 140);
+            issuanceBtnClear.FlatAppearance.BorderSize = 0;
+            issuanceBtnClear.FlatStyle = FlatStyle.Flat;
+            issuanceBtnClear.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            issuanceBtnClear.ForeColor = Color.White;
+            issuanceBtnClear.Location = new Point(707, 211);
+            issuanceBtnClear.Name = "issuanceBtnClear";
+            issuanceBtnClear.Size = new Size(72, 28);
+            issuanceBtnClear.TabIndex = 27;
+            issuanceBtnClear.Text = "Clear";
+            issuanceBtnClear.UseVisualStyleBackColor = false;
+            issuanceBtnClear.Click += issuanceBtnClear_Click;
             // 
-            // button6
+            // issuanceBtnSave
             // 
-            button6.BackColor = Color.FromArgb(4, 171, 237);
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.ForeColor = Color.White;
-            button6.Location = new Point(707, 177);
-            button6.Name = "button6";
-            button6.Size = new Size(72, 28);
-            button6.TabIndex = 28;
-            button6.Text = "Save";
-            button6.UseVisualStyleBackColor = false;
+            issuanceBtnSave.BackColor = Color.FromArgb(4, 171, 237);
+            issuanceBtnSave.FlatAppearance.BorderSize = 0;
+            issuanceBtnSave.FlatStyle = FlatStyle.Flat;
+            issuanceBtnSave.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            issuanceBtnSave.ForeColor = Color.White;
+            issuanceBtnSave.Location = new Point(707, 177);
+            issuanceBtnSave.Name = "issuanceBtnSave";
+            issuanceBtnSave.Size = new Size(72, 28);
+            issuanceBtnSave.TabIndex = 28;
+            issuanceBtnSave.Text = "Save";
+            issuanceBtnSave.UseVisualStyleBackColor = false;
+            issuanceBtnSave.Click += issuanceBtnSave_Click;
             // 
             // label12
             // 
@@ -304,15 +310,15 @@
             label7.TabIndex = 6;
             label7.Text = "Date:";
             // 
-            // textBox10
+            // meterNumber
             // 
-            textBox10.BorderStyle = BorderStyle.None;
-            textBox10.Cursor = Cursors.IBeam;
-            textBox10.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox10.Location = new Point(154, 266);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(200, 15);
-            textBox10.TabIndex = 22;
+            meterNumber.BorderStyle = BorderStyle.None;
+            meterNumber.Cursor = Cursors.IBeam;
+            meterNumber.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            meterNumber.Location = new Point(154, 266);
+            meterNumber.Name = "meterNumber";
+            meterNumber.Size = new Size(200, 15);
+            meterNumber.TabIndex = 22;
             // 
             // textBox9
             // 
@@ -324,25 +330,25 @@
             textBox9.Size = new Size(200, 15);
             textBox9.TabIndex = 22;
             // 
-            // textBox8
+            // joNumber
             // 
-            textBox8.BorderStyle = BorderStyle.None;
-            textBox8.Cursor = Cursors.IBeam;
-            textBox8.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox8.Location = new Point(154, 164);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(200, 15);
-            textBox8.TabIndex = 20;
+            joNumber.BorderStyle = BorderStyle.None;
+            joNumber.Cursor = Cursors.IBeam;
+            joNumber.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            joNumber.Location = new Point(154, 164);
+            joNumber.Name = "joNumber";
+            joNumber.Size = new Size(200, 15);
+            joNumber.TabIndex = 20;
             // 
-            // textBox7
+            // giNumber
             // 
-            textBox7.BorderStyle = BorderStyle.None;
-            textBox7.Cursor = Cursors.IBeam;
-            textBox7.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox7.Location = new Point(154, 105);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(200, 15);
-            textBox7.TabIndex = 19;
+            giNumber.BorderStyle = BorderStyle.None;
+            giNumber.Cursor = Cursors.IBeam;
+            giNumber.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            giNumber.Location = new Point(154, 105);
+            giNumber.Name = "giNumber";
+            giNumber.Size = new Size(200, 15);
+            giNumber.TabIndex = 19;
             // 
             // label11
             // 
@@ -418,17 +424,17 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(dateTimePicker1);
-            groupBox1.Controls.Add(textBox5);
-            groupBox1.Controls.Add(textBox4);
-            groupBox1.Controls.Add(textBox3);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(inventoryItemCode);
+            groupBox1.Controls.Add(inventoryDateTimePicker);
+            groupBox1.Controls.Add(quantityTextBox);
+            groupBox1.Controls.Add(itemDescriptionTextBox);
+            groupBox1.Controls.Add(grNumberTextBox);
             groupBox1.Controls.Add(panel6);
             groupBox1.Controls.Add(panel5);
             groupBox1.Controls.Add(panel4);
             groupBox1.Controls.Add(panel3);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(clearBtnReceiving);
+            groupBox1.Controls.Add(saveBtn);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
@@ -436,61 +442,51 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             groupBox1.ForeColor = Color.FromArgb(4, 171, 237);
-            groupBox1.Location = new Point(9, 54);
+            groupBox1.Location = new Point(9, 55);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(806, 335);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Receiving";
             // 
-            // dateTimePicker1
+            // inventoryDateTimePicker
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(160, 41);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(123, 27);
-            dateTimePicker1.TabIndex = 23;
+            inventoryDateTimePicker.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            inventoryDateTimePicker.Format = DateTimePickerFormat.Short;
+            inventoryDateTimePicker.Location = new Point(160, 41);
+            inventoryDateTimePicker.Name = "inventoryDateTimePicker";
+            inventoryDateTimePicker.Size = new Size(123, 27);
+            inventoryDateTimePicker.TabIndex = 23;
             // 
-            // textBox5
+            // quantityTextBox
             // 
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.Cursor = Cursors.IBeam;
-            textBox5.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(160, 275);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(200, 15);
-            textBox5.TabIndex = 22;
+            quantityTextBox.BorderStyle = BorderStyle.None;
+            quantityTextBox.Cursor = Cursors.IBeam;
+            quantityTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            quantityTextBox.Location = new Point(160, 275);
+            quantityTextBox.Name = "quantityTextBox";
+            quantityTextBox.Size = new Size(200, 15);
+            quantityTextBox.TabIndex = 22;
             // 
-            // textBox4
+            // itemDescriptionTextBox
             // 
-            textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Cursor = Cursors.IBeam;
-            textBox4.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(160, 221);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(200, 15);
-            textBox4.TabIndex = 21;
+            itemDescriptionTextBox.BorderStyle = BorderStyle.None;
+            itemDescriptionTextBox.Cursor = Cursors.IBeam;
+            itemDescriptionTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            itemDescriptionTextBox.Location = new Point(160, 221);
+            itemDescriptionTextBox.Name = "itemDescriptionTextBox";
+            itemDescriptionTextBox.Size = new Size(200, 15);
+            itemDescriptionTextBox.TabIndex = 21;
             // 
-            // textBox3
+            // grNumberTextBox
             // 
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Cursor = Cursors.IBeam;
-            textBox3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(160, 166);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(200, 15);
-            textBox3.TabIndex = 20;
-            // 
-            // textBox2
-            // 
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Cursor = Cursors.IBeam;
-            textBox2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(160, 118);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(200, 15);
-            textBox2.TabIndex = 19;
+            grNumberTextBox.BorderStyle = BorderStyle.None;
+            grNumberTextBox.Cursor = Cursors.IBeam;
+            grNumberTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grNumberTextBox.Location = new Point(160, 118);
+            grNumberTextBox.Name = "grNumberTextBox";
+            grNumberTextBox.Size = new Size(200, 15);
+            grNumberTextBox.TabIndex = 19;
             // 
             // panel6
             // 
@@ -524,33 +520,35 @@
             panel3.Size = new Size(200, 1);
             panel3.TabIndex = 14;
             // 
-            // button1
+            // clearBtnReceiving
             // 
-            button1.BackColor = Color.FromArgb(49, 77, 140);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(673, 135);
-            button1.Name = "button1";
-            button1.Size = new Size(72, 28);
-            button1.TabIndex = 12;
-            button1.Text = "Clear";
-            button1.UseVisualStyleBackColor = false;
+            clearBtnReceiving.BackColor = Color.FromArgb(49, 77, 140);
+            clearBtnReceiving.FlatAppearance.BorderSize = 0;
+            clearBtnReceiving.FlatStyle = FlatStyle.Flat;
+            clearBtnReceiving.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            clearBtnReceiving.ForeColor = Color.White;
+            clearBtnReceiving.Location = new Point(673, 135);
+            clearBtnReceiving.Name = "clearBtnReceiving";
+            clearBtnReceiving.Size = new Size(72, 28);
+            clearBtnReceiving.TabIndex = 12;
+            clearBtnReceiving.Text = "Clear";
+            clearBtnReceiving.UseVisualStyleBackColor = false;
+            clearBtnReceiving.Click += clearBtnReceiving_Click;
             // 
-            // button2
+            // saveBtn
             // 
-            button2.BackColor = Color.FromArgb(4, 171, 237);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(488, 135);
-            button2.Name = "button2";
-            button2.Size = new Size(72, 28);
-            button2.TabIndex = 11;
-            button2.Text = "Save";
-            button2.UseVisualStyleBackColor = false;
+            saveBtn.BackColor = Color.FromArgb(4, 171, 237);
+            saveBtn.FlatAppearance.BorderSize = 0;
+            saveBtn.FlatStyle = FlatStyle.Flat;
+            saveBtn.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            saveBtn.ForeColor = Color.White;
+            saveBtn.Location = new Point(488, 135);
+            saveBtn.Name = "saveBtn";
+            saveBtn.Size = new Size(72, 28);
+            saveBtn.TabIndex = 11;
+            saveBtn.Text = "Save";
+            saveBtn.UseVisualStyleBackColor = false;
+            saveBtn.Click += button2_Click;
             // 
             // label6
             // 
@@ -602,6 +600,22 @@
             label2.TabIndex = 5;
             label2.Text = "Date:";
             // 
+            // inventoryItemCode
+            // 
+            inventoryItemCode.FormattingEnabled = true;
+            inventoryItemCode.Location = new Point(160, 150);
+            inventoryItemCode.Name = "inventoryItemCode";
+            inventoryItemCode.Size = new Size(200, 33);
+            inventoryItemCode.TabIndex = 25;
+            // 
+            // joTypeComboBox
+            // 
+            joTypeComboBox.FormattingEnabled = true;
+            joTypeComboBox.Location = new Point(154, 201);
+            joTypeComboBox.Name = "joTypeComboBox";
+            joTypeComboBox.Size = new Size(200, 33);
+            joTypeComboBox.TabIndex = 25;
+            // 
             // inventory
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -615,10 +629,10 @@
             panel1.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewStock).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewIssuance).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -628,35 +642,34 @@
 
         private Panel panel1;
         private GroupBox groupBox1;
-        private DateTimePicker dateTimePicker1;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private DateTimePicker inventoryDateTimePicker;
+        private TextBox quantityTextBox;
+        private TextBox itemDescriptionTextBox;
+        private TextBox grNumberTextBox;
         private Panel panel6;
         private Panel panel5;
         private Panel panel4;
         private Panel panel3;
-        private Button button1;
-        private Button button2;
+        private Button clearBtnReceiving;
+        private Button saveBtn;
         private Label label6;
         private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
         private GroupBox groupBox2;
-        private DateTimePicker dateTimePicker2;
-        private DataGridView dataGridView1;
-        private TextBox textBox11;
-        private Button button9;
-        private Button button6;
+        private DateTimePicker IssuanceDateTimePicker;
+        private DataGridView dataGridViewIssuance;
+        private TextBox remarksTextBox;
+        private Button issuanceBtnClear;
+        private Button issuanceBtnSave;
         private Label label12;
         private Panel panel12;
         private Label label7;
-        private TextBox textBox10;
+        private TextBox meterNumber;
         private TextBox textBox9;
-        private TextBox textBox8;
-        private TextBox textBox7;
+        private TextBox joNumber;
+        private TextBox giNumber;
         private Label label11;
         private Label label10;
         private Panel panel11;
@@ -666,12 +679,14 @@
         private Label label8;
         private Panel panel8;
         private GroupBox groupBox3;
-        private DataGridView dataGridView2;
-        private Button button8;
-        private Button button5;
+        private DataGridView dataGridViewStock;
+        private Button btnResetStock;
+        private Button btnSearchStock;
         private Panel panel13;
-        private TextBox textBox12;
+        private TextBox searchTextBox;
         private Label label13;
         private Label label1;
+        private ComboBox joTypeComboBox;
+        private ComboBox inventoryItemCode;
     }
 }

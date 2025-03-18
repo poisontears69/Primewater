@@ -9,6 +9,14 @@ namespace InventoryManagement
         // Connection string for XAMPP MySQL
         private string connectionString = "server=localhost;database=inventory_management;user=root;password=;";
 
+        public string ConnectionString => connectionString; // Exposes connection string
+
+        public MySqlConnection GetConnection()
+        {
+            return new MySqlConnection(connectionString);
+        }
+
+
         // Method to execute a non-query (INSERT, UPDATE, DELETE)
         public int ExecuteNonQuery(string query, MySqlParameter[] parameters = null)
         {

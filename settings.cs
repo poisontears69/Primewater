@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Primewater
 {
@@ -21,7 +22,7 @@ namespace Primewater
         {
             InitializeComponent();
             LoadData();
-            LoadItemsData();
+            LoadItemsData("Capex");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -120,6 +121,22 @@ namespace Primewater
         {
             string itemCode = itemCodeTB.Text.Trim();
             string itemDesc = itemDescTB.Text.Trim();
+            string itemType = ""; // Variable to store selected type
+
+            // Check which radio button is selected
+            if (radioCapex.Checked)
+            {
+                itemType = "Capex";
+            }
+            else if (radioInventory.Checked)
+            {
+                itemType = "Inventory";
+            }
+            else
+            {
+                MessageBox.Show("Please select an item type (Capex or Inventory).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (string.IsNullOrEmpty(itemCode) || string.IsNullOrEmpty(itemDesc))
             {
@@ -144,12 +161,13 @@ namespace Primewater
                     return;
                 }
 
-                // Insert new item
-                string query = "INSERT INTO items (item_code, item_description) VALUES (@itemCode, @itemDesc)";
+                // Insert new item with item_type
+                string query = "INSERT INTO items (item_code, item_description, item_type) VALUES (@itemCode, @itemDesc, @itemType)";
                 MySqlParameter[] parameters =
                 {
             new MySqlParameter("@itemCode", itemCode),
-            new MySqlParameter("@itemDesc", itemDesc)
+            new MySqlParameter("@itemDesc", itemDesc),
+            new MySqlParameter("@itemType", itemType)
         };
 
                 int rowsAffected = db.ExecuteNonQuery(query, parameters);
@@ -159,7 +177,9 @@ namespace Primewater
                     MessageBox.Show("Item saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     itemCodeTB.Clear();
                     itemDescTB.Clear();
-                    LoadItemsData();
+                    radioCapex.Checked = false;
+                    radioInventory.Checked = false;
+                    dataGridView2.Refresh(); // Force refresh
                 }
                 else
                 {
@@ -171,6 +191,7 @@ namespace Primewater
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void LoadData()
@@ -286,13 +307,13 @@ namespace Primewater
             }
         }
 
-        private void LoadItemsData()
+        private void LoadItemsData(string itemType)
         {
             try
             {
-                string query = "SELECT item_id, item_code, item_description FROM items"; // Ensure your column names are correct
-                DataTable dt = db.ExecuteQuery(query); // Fetch data from items table
-
+                string query = "SELECT item_id, item_code, item_description, item_type FROM items WHERE item_type = @itemType"; // Filter by type
+                MySqlParameter[] parameters = { new MySqlParameter("@itemType", itemType) };
+                DataTable dt = db.ExecuteQuery(query, parameters); // Fetch filtered data
 
                 dataGridView2.DataSource = null; // Clear previous data
                 dataGridView2.DataSource = dt; // Set new data
@@ -366,7 +387,7 @@ namespace Primewater
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Item updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadItemsData(); // Refresh DataGridView
+                            dataGridView2.Refresh(); // Force refresh
                         }
                     }
                     catch (Exception ex)
@@ -379,7 +400,7 @@ namespace Primewater
 
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void deleteToolStripMenuItem1_Click_1(object sender, EventArgs e)
@@ -409,7 +430,7 @@ namespace Primewater
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Item deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadItemsData(); // Refresh DataGridView
+                            dataGridView2.Refresh(); // Force refresh
                         }
                     }
                     catch (Exception ex)
@@ -418,6 +439,29 @@ namespace Primewater
                     }
                 }
             }
+        }
+
+        private void radioCapex_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioCapex.Checked)
+            {
+                radioInventory.Checked = false;
+                LoadItemsData("Capex"); // Load only Capex items
+            }
+        }
+
+        private void radioInventory_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioInventory.Checked)
+            {
+                radioCapex.Checked = false;
+                LoadItemsData("Inventory"); // Load only Inventory items
+            }
+        }
+
+        private void dataGridView2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

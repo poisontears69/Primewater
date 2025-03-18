@@ -32,6 +32,8 @@
             panel10 = new Panel();
             panel11 = new Panel();
             panel1 = new Panel();
+            radioInventory = new RadioButton();
+            radioCapex = new RadioButton();
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
             modifyToolStripMenuItem = new ToolStripMenuItem();
@@ -41,30 +43,19 @@
             modifyToolStripMenuItem1 = new ToolStripMenuItem();
             deleteToolStripMenuItem1 = new ToolStripMenuItem();
             panel13 = new Panel();
-            panel9 = new Panel();
-            panel8 = new Panel();
-            panel7 = new Panel();
             panel6 = new Panel();
             panel5 = new Panel();
             panel4 = new Panel();
             panel3 = new Panel();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
             itemDescTB = new TextBox();
             itemCodeTB = new TextBox();
             jobDescTB = new TextBox();
             jobCodeTB = new TextBox();
             panel2 = new Panel();
-            button3 = new Button();
             btnSaveItem = new Button();
             panel12 = new Panel();
             btnSaveJobType = new Button();
-            label10 = new Label();
             label11 = new Label();
-            label9 = new Label();
-            label8 = new Label();
-            label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -97,33 +88,24 @@
             // panel1
             // 
             panel1.AutoScroll = true;
+            panel1.Controls.Add(radioInventory);
+            panel1.Controls.Add(radioCapex);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(dataGridView2);
             panel1.Controls.Add(panel13);
-            panel1.Controls.Add(panel9);
-            panel1.Controls.Add(panel8);
-            panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel3);
-            panel1.Controls.Add(textBox7);
-            panel1.Controls.Add(textBox6);
-            panel1.Controls.Add(textBox5);
             panel1.Controls.Add(itemDescTB);
             panel1.Controls.Add(itemCodeTB);
             panel1.Controls.Add(jobDescTB);
             panel1.Controls.Add(jobCodeTB);
             panel1.Controls.Add(panel2);
-            panel1.Controls.Add(button3);
             panel1.Controls.Add(btnSaveItem);
             panel1.Controls.Add(panel12);
             panel1.Controls.Add(btnSaveJobType);
-            panel1.Controls.Add(label10);
             panel1.Controls.Add(label11);
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(label8);
-            panel1.Controls.Add(label6);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -135,6 +117,30 @@
             panel1.Size = new Size(843, 642);
             panel1.TabIndex = 17;
             panel1.Paint += panel1_Paint;
+            // 
+            // radioInventory
+            // 
+            radioInventory.AutoSize = true;
+            radioInventory.Location = new Point(301, 451);
+            radioInventory.Name = "radioInventory";
+            radioInventory.Size = new Size(75, 19);
+            radioInventory.TabIndex = 50;
+            radioInventory.TabStop = true;
+            radioInventory.Text = "Inventory";
+            radioInventory.UseVisualStyleBackColor = true;
+            radioInventory.CheckedChanged += radioInventory_CheckedChanged;
+            // 
+            // radioCapex
+            // 
+            radioCapex.AutoSize = true;
+            radioCapex.Location = new Point(212, 451);
+            radioCapex.Name = "radioCapex";
+            radioCapex.Size = new Size(57, 19);
+            radioCapex.TabIndex = 49;
+            radioCapex.TabStop = true;
+            radioCapex.Text = "Capex";
+            radioCapex.UseVisualStyleBackColor = true;
+            radioCapex.CheckedChanged += radioCapex_CheckedChanged;
             // 
             // dataGridView1
             // 
@@ -184,6 +190,7 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(326, 231);
             dataGridView2.TabIndex = 47;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick_1;
             // 
             // contextMenuStrip2
             // 
@@ -207,39 +214,15 @@
             // 
             // panel13
             // 
-            panel13.Location = new Point(347, 833);
+            panel13.Location = new Point(301, 626);
             panel13.Name = "panel13";
             panel13.Size = new Size(200, 100);
             panel13.TabIndex = 46;
             // 
-            // panel9
-            // 
-            panel9.BackColor = Color.FromArgb(4, 171, 237);
-            panel9.Location = new Point(343, 769);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(196, 1);
-            panel9.TabIndex = 45;
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.FromArgb(4, 171, 237);
-            panel8.Location = new Point(343, 724);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(196, 1);
-            panel8.TabIndex = 43;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.FromArgb(4, 171, 237);
-            panel7.Location = new Point(345, 683);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(196, 1);
-            panel7.TabIndex = 42;
-            // 
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(4, 171, 237);
-            panel6.Location = new Point(216, 463);
+            panel6.Location = new Point(212, 430);
             panel6.Name = "panel6";
             panel6.Size = new Size(196, 1);
             panel6.TabIndex = 41;
@@ -247,7 +230,7 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(4, 171, 237);
-            panel5.Location = new Point(216, 413);
+            panel5.Location = new Point(212, 380);
             panel5.Name = "panel5";
             panel5.Size = new Size(196, 1);
             panel5.TabIndex = 40;
@@ -255,7 +238,7 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(4, 171, 237);
-            panel4.Location = new Point(216, 234);
+            panel4.Location = new Point(219, 170);
             panel4.Name = "panel4";
             panel4.Size = new Size(196, 1);
             panel4.TabIndex = 39;
@@ -263,39 +246,15 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(4, 171, 237);
-            panel3.Location = new Point(216, 171);
+            panel3.Location = new Point(219, 107);
             panel3.Name = "panel3";
             panel3.Size = new Size(196, 1);
             panel3.TabIndex = 38;
             // 
-            // textBox7
-            // 
-            textBox7.BorderStyle = BorderStyle.None;
-            textBox7.Location = new Point(345, 751);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(196, 16);
-            textBox7.TabIndex = 37;
-            // 
-            // textBox6
-            // 
-            textBox6.BorderStyle = BorderStyle.None;
-            textBox6.Location = new Point(345, 706);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(196, 16);
-            textBox6.TabIndex = 36;
-            // 
-            // textBox5
-            // 
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.Location = new Point(345, 665);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(196, 16);
-            textBox5.TabIndex = 35;
-            // 
             // itemDescTB
             // 
             itemDescTB.BorderStyle = BorderStyle.None;
-            itemDescTB.Location = new Point(218, 445);
+            itemDescTB.Location = new Point(214, 412);
             itemDescTB.Name = "itemDescTB";
             itemDescTB.Size = new Size(196, 16);
             itemDescTB.TabIndex = 34;
@@ -304,7 +263,7 @@
             // itemCodeTB
             // 
             itemCodeTB.BorderStyle = BorderStyle.None;
-            itemCodeTB.Location = new Point(218, 395);
+            itemCodeTB.Location = new Point(214, 362);
             itemCodeTB.Name = "itemCodeTB";
             itemCodeTB.Size = new Size(196, 16);
             itemCodeTB.TabIndex = 33;
@@ -313,7 +272,7 @@
             // jobDescTB
             // 
             jobDescTB.BorderStyle = BorderStyle.None;
-            jobDescTB.Location = new Point(218, 216);
+            jobDescTB.Location = new Point(221, 152);
             jobDescTB.Name = "jobDescTB";
             jobDescTB.Size = new Size(196, 16);
             jobDescTB.TabIndex = 32;
@@ -322,7 +281,7 @@
             // jobCodeTB
             // 
             jobCodeTB.BorderStyle = BorderStyle.None;
-            jobCodeTB.Location = new Point(216, 153);
+            jobCodeTB.Location = new Point(219, 89);
             jobCodeTB.Name = "jobCodeTB";
             jobCodeTB.Size = new Size(196, 16);
             jobCodeTB.TabIndex = 44;
@@ -335,20 +294,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(676, 1);
             panel2.TabIndex = 31;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.FromArgb(4, 171, 237);
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(397, 800);
-            button3.Name = "button3";
-            button3.Size = new Size(86, 27);
-            button3.TabIndex = 29;
-            button3.Text = "Save";
-            button3.UseVisualStyleBackColor = false;
             // 
             // btnSaveItem
             // 
@@ -380,7 +325,7 @@
             btnSaveJobType.FlatStyle = FlatStyle.Flat;
             btnSaveJobType.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSaveJobType.ForeColor = Color.White;
-            btnSaveJobType.Location = new Point(268, 256);
+            btnSaveJobType.Location = new Point(271, 192);
             btnSaveJobType.Name = "btnSaveJobType";
             btnSaveJobType.Size = new Size(86, 27);
             btnSaveJobType.TabIndex = 27;
@@ -388,67 +333,23 @@
             btnSaveJobType.UseVisualStyleBackColor = false;
             btnSaveJobType.Click += btnSaveJobType_Click;
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Arial", 18F, FontStyle.Bold);
-            label10.ForeColor = Color.FromArgb(4, 171, 237);
-            label10.Location = new Point(332, 600);
-            label10.Name = "label10";
-            label10.Size = new Size(221, 29);
-            label10.TabIndex = 26;
-            label10.Text = "Change Password";
-            // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Arial", 18F, FontStyle.Bold);
             label11.ForeColor = Color.FromArgb(4, 171, 237);
-            label11.Location = new Point(218, 331);
+            label11.Location = new Point(216, 314);
             label11.Name = "label11";
             label11.Size = new Size(170, 29);
             label11.TabIndex = 25;
             label11.Text = "Add new Item";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Arial", 11.25F, FontStyle.Bold);
-            label9.ForeColor = Color.FromArgb(4, 171, 237);
-            label9.Location = new Point(192, 752);
-            label9.Name = "label9";
-            label9.Size = new Size(140, 18);
-            label9.TabIndex = 24;
-            label9.Text = "Confirm password:";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Arial", 11.25F, FontStyle.Bold);
-            label8.ForeColor = Color.FromArgb(4, 171, 237);
-            label8.Location = new Point(192, 707);
-            label8.Name = "label8";
-            label8.Size = new Size(115, 18);
-            label8.TabIndex = 23;
-            label8.Text = "New password:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Arial", 11.25F, FontStyle.Bold);
-            label6.ForeColor = Color.FromArgb(4, 171, 237);
-            label6.Location = new Point(192, 661);
-            label6.Name = "label6";
-            label6.Size = new Size(109, 18);
-            label6.TabIndex = 22;
-            label6.Text = "Old password:";
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label5.ForeColor = Color.FromArgb(4, 171, 237);
-            label5.Location = new Point(65, 445);
+            label5.Location = new Point(61, 412);
             label5.Name = "label5";
             label5.Size = new Size(128, 18);
             label5.TabIndex = 21;
@@ -459,7 +360,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label4.ForeColor = Color.FromArgb(4, 171, 237);
-            label4.Location = new Point(65, 391);
+            label4.Location = new Point(61, 358);
             label4.Name = "label4";
             label4.Size = new Size(84, 18);
             label4.TabIndex = 20;
@@ -470,7 +371,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label3.ForeColor = Color.FromArgb(4, 171, 237);
-            label3.Location = new Point(65, 216);
+            label3.Location = new Point(68, 152);
             label3.Name = "label3";
             label3.Size = new Size(124, 18);
             label3.TabIndex = 19;
@@ -481,7 +382,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(4, 171, 237);
-            label2.Location = new Point(65, 148);
+            label2.Location = new Point(68, 84);
             label2.Name = "label2";
             label2.Size = new Size(80, 18);
             label2.TabIndex = 18;
@@ -492,7 +393,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 18F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(4, 171, 237);
-            label1.Location = new Point(209, 86);
+            label1.Location = new Point(212, 22);
             label1.Name = "label1";
             label1.Size = new Size(220, 29);
             label1.TabIndex = 17;
@@ -531,30 +432,19 @@
         private Panel panel10;
         private Panel panel11;
         private Panel panel1;
-        private Panel panel9;
-        private Panel panel8;
-        private Panel panel7;
         private Panel panel6;
         private Panel panel5;
         private Panel panel4;
         private Panel panel3;
-        private TextBox textBox7;
-        private TextBox textBox6;
-        private TextBox textBox5;
         private TextBox itemDescTB;
         private TextBox itemCodeTB;
         private TextBox jobDescTB;
         private TextBox jobCodeTB;
         private Panel panel2;
-        private Button button3;
         private Button btnSaveItem;
         private Panel panel12;
         private Button btnSaveJobType;
-        private Label label10;
         private Label label11;
-        private Label label9;
-        private Label label8;
-        private Label label6;
         private Label label5;
         private Label label4;
         private Label label3;
@@ -570,5 +460,7 @@
         private ToolStripMenuItem modifyToolStripMenuItem1;
         private ToolStripMenuItem deleteToolStripMenuItem1;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
+        private RadioButton radioCapex;
+        private RadioButton radioInventory;
     }
 }

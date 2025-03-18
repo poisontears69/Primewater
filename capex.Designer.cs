@@ -28,27 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             groupBox3 = new GroupBox();
-            dataGridView2 = new DataGridView();
-            button8 = new Button();
-            button5 = new Button();
+            dataGridViewCapexStock = new DataGridView();
+            btnStockReset = new Button();
+            btnStockSearch = new Button();
             panel13 = new Panel();
-            textBox12 = new TextBox();
+            searchStockTextBox = new TextBox();
             label13 = new Label();
             groupBox2 = new GroupBox();
+            jobOrderTypeComboBox = new ComboBox();
             issuanceDatePicker = new DateTimePicker();
             dataGridView1 = new DataGridView();
-            textBox11 = new TextBox();
-            button9 = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            addItemToolStripMenuItem = new ToolStripMenuItem();
+            removeToolStripMenuItem = new ToolStripMenuItem();
+            modifyToolStripMenuItem = new ToolStripMenuItem();
+            remarksTextBox = new TextBox();
+            btnClearCapexIssuance = new Button();
             button6 = new Button();
             label12 = new Label();
             panel12 = new Panel();
             label7 = new Label();
-            textBox10 = new TextBox();
-            textBox9 = new TextBox();
-            textBox8 = new TextBox();
-            textBox7 = new TextBox();
+            meterNumberTextBox = new TextBox();
+            IssuedByTextBox = new TextBox();
+            requestedByTextBox = new TextBox();
             label11 = new Label();
             label10 = new Label();
             panel11 = new Panel();
@@ -77,9 +82,10 @@
             label1 = new Label();
             panel1.SuspendLayout();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCapexStock).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -98,11 +104,11 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(dataGridView2);
-            groupBox3.Controls.Add(button8);
-            groupBox3.Controls.Add(button5);
+            groupBox3.Controls.Add(dataGridViewCapexStock);
+            groupBox3.Controls.Add(btnStockReset);
+            groupBox3.Controls.Add(btnStockSearch);
             groupBox3.Controls.Add(panel13);
-            groupBox3.Controls.Add(textBox12);
+            groupBox3.Controls.Add(searchStockTextBox);
             groupBox3.Controls.Add(label13);
             groupBox3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold);
             groupBox3.ForeColor = Color.FromArgb(4, 171, 237);
@@ -113,41 +119,47 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Stock";
             // 
-            // dataGridView2
+            // dataGridViewCapexStock
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(19, 32);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(541, 291);
-            dataGridView2.TabIndex = 8;
+            dataGridViewCapexStock.AllowUserToResizeRows = false;
+            dataGridViewCapexStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCapexStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCapexStock.ColumnHeadersVisible = false;
+            dataGridViewCapexStock.Location = new Point(19, 32);
+            dataGridViewCapexStock.Name = "dataGridViewCapexStock";
+            dataGridViewCapexStock.RowHeadersVisible = false;
+            dataGridViewCapexStock.Size = new Size(541, 291);
+            dataGridViewCapexStock.TabIndex = 8;
             // 
-            // button8
+            // btnStockReset
             // 
-            button8.BackColor = Color.FromArgb(49, 77, 140);
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.ForeColor = Color.White;
-            button8.Location = new Point(716, 91);
-            button8.Name = "button8";
-            button8.Size = new Size(72, 28);
-            button8.TabIndex = 6;
-            button8.Text = "Reset";
-            button8.UseVisualStyleBackColor = false;
+            btnStockReset.BackColor = Color.FromArgb(49, 77, 140);
+            btnStockReset.FlatAppearance.BorderSize = 0;
+            btnStockReset.FlatStyle = FlatStyle.Flat;
+            btnStockReset.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnStockReset.ForeColor = Color.White;
+            btnStockReset.Location = new Point(716, 91);
+            btnStockReset.Name = "btnStockReset";
+            btnStockReset.Size = new Size(72, 28);
+            btnStockReset.TabIndex = 6;
+            btnStockReset.Text = "Reset";
+            btnStockReset.UseVisualStyleBackColor = false;
+            btnStockReset.Click += btnStockReset_Click_1;
             // 
-            // button5
+            // btnStockSearch
             // 
-            button5.BackColor = Color.FromArgb(4, 171, 237);
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(588, 91);
-            button5.Name = "button5";
-            button5.Size = new Size(72, 28);
-            button5.TabIndex = 7;
-            button5.Text = "Save";
-            button5.UseVisualStyleBackColor = false;
+            btnStockSearch.BackColor = Color.FromArgb(4, 171, 237);
+            btnStockSearch.FlatAppearance.BorderSize = 0;
+            btnStockSearch.FlatStyle = FlatStyle.Flat;
+            btnStockSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnStockSearch.ForeColor = Color.White;
+            btnStockSearch.Location = new Point(588, 91);
+            btnStockSearch.Name = "btnStockSearch";
+            btnStockSearch.Size = new Size(72, 28);
+            btnStockSearch.TabIndex = 7;
+            btnStockSearch.Text = "Search";
+            btnStockSearch.UseVisualStyleBackColor = false;
+            btnStockSearch.Click += btnStockSearch_Click_1;
             // 
             // panel13
             // 
@@ -157,15 +169,15 @@
             panel13.Size = new Size(200, 1);
             panel13.TabIndex = 9;
             // 
-            // textBox12
+            // searchStockTextBox
             // 
-            textBox12.BorderStyle = BorderStyle.None;
-            textBox12.Cursor = Cursors.IBeam;
-            textBox12.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox12.Location = new Point(588, 58);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(200, 15);
-            textBox12.TabIndex = 10;
+            searchStockTextBox.BorderStyle = BorderStyle.None;
+            searchStockTextBox.Cursor = Cursors.IBeam;
+            searchStockTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchStockTextBox.Location = new Point(588, 58);
+            searchStockTextBox.Name = "searchStockTextBox";
+            searchStockTextBox.Size = new Size(200, 15);
+            searchStockTextBox.TabIndex = 10;
             // 
             // label13
             // 
@@ -179,18 +191,18 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(jobOrderTypeComboBox);
             groupBox2.Controls.Add(issuanceDatePicker);
             groupBox2.Controls.Add(dataGridView1);
-            groupBox2.Controls.Add(textBox11);
-            groupBox2.Controls.Add(button9);
+            groupBox2.Controls.Add(remarksTextBox);
+            groupBox2.Controls.Add(btnClearCapexIssuance);
             groupBox2.Controls.Add(button6);
             groupBox2.Controls.Add(label12);
             groupBox2.Controls.Add(panel12);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(textBox10);
-            groupBox2.Controls.Add(textBox9);
-            groupBox2.Controls.Add(textBox8);
-            groupBox2.Controls.Add(textBox7);
+            groupBox2.Controls.Add(meterNumberTextBox);
+            groupBox2.Controls.Add(IssuedByTextBox);
+            groupBox2.Controls.Add(requestedByTextBox);
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(panel11);
@@ -208,6 +220,15 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Issuance";
             // 
+            // jobOrderTypeComboBox
+            // 
+            jobOrderTypeComboBox.FormattingEnabled = true;
+            jobOrderTypeComboBox.Location = new Point(154, 201);
+            jobOrderTypeComboBox.Name = "jobOrderTypeComboBox";
+            jobOrderTypeComboBox.Size = new Size(200, 33);
+            jobOrderTypeComboBox.TabIndex = 24;
+            jobOrderTypeComboBox.SelectedIndexChanged += receivingItemCodeComboBox_SelectedIndexChanged_1;
+            // 
             // issuanceDatePicker
             // 
             issuanceDatePicker.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -219,36 +240,71 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.ColumnHeadersVisible = false;
+            dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.Location = new Point(381, 121);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(299, 188);
             dataGridView1.TabIndex = 31;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
-            // textBox11
+            // contextMenuStrip1
             // 
-            textBox11.BorderStyle = BorderStyle.FixedSingle;
-            textBox11.Cursor = Cursors.IBeam;
-            textBox11.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox11.Location = new Point(403, 50);
-            textBox11.Multiline = true;
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(257, 60);
-            textBox11.TabIndex = 30;
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { addItemToolStripMenuItem, removeToolStripMenuItem, modifyToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(124, 70);
+            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
-            // button9
+            // addItemToolStripMenuItem
             // 
-            button9.BackColor = Color.FromArgb(49, 77, 140);
-            button9.FlatAppearance.BorderSize = 0;
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button9.ForeColor = Color.White;
-            button9.Location = new Point(707, 211);
-            button9.Name = "button9";
-            button9.Size = new Size(72, 28);
-            button9.TabIndex = 27;
-            button9.Text = "Clear";
-            button9.UseVisualStyleBackColor = false;
+            addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
+            addItemToolStripMenuItem.Size = new Size(123, 22);
+            addItemToolStripMenuItem.Text = "Add item";
+            addItemToolStripMenuItem.Click += addItemToolStripMenuItem_Click;
+            // 
+            // removeToolStripMenuItem
+            // 
+            removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            removeToolStripMenuItem.Size = new Size(123, 22);
+            removeToolStripMenuItem.Text = "Remove";
+            removeToolStripMenuItem.Click += removeToolStripMenuItem_Click;
+            // 
+            // modifyToolStripMenuItem
+            // 
+            modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
+            modifyToolStripMenuItem.Size = new Size(123, 22);
+            modifyToolStripMenuItem.Text = "Modify";
+            modifyToolStripMenuItem.Click += modifyToolStripMenuItem_Click;
+            // 
+            // remarksTextBox
+            // 
+            remarksTextBox.BorderStyle = BorderStyle.FixedSingle;
+            remarksTextBox.Cursor = Cursors.IBeam;
+            remarksTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            remarksTextBox.Location = new Point(403, 50);
+            remarksTextBox.Multiline = true;
+            remarksTextBox.Name = "remarksTextBox";
+            remarksTextBox.Size = new Size(257, 60);
+            remarksTextBox.TabIndex = 30;
+            // 
+            // btnClearCapexIssuance
+            // 
+            btnClearCapexIssuance.BackColor = Color.FromArgb(49, 77, 140);
+            btnClearCapexIssuance.FlatAppearance.BorderSize = 0;
+            btnClearCapexIssuance.FlatStyle = FlatStyle.Flat;
+            btnClearCapexIssuance.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClearCapexIssuance.ForeColor = Color.White;
+            btnClearCapexIssuance.Location = new Point(707, 211);
+            btnClearCapexIssuance.Name = "btnClearCapexIssuance";
+            btnClearCapexIssuance.Size = new Size(72, 28);
+            btnClearCapexIssuance.TabIndex = 27;
+            btnClearCapexIssuance.Text = "Clear";
+            btnClearCapexIssuance.UseVisualStyleBackColor = false;
+            btnClearCapexIssuance.Click += btnClearCapexIssuance_Click;
             // 
             // button6
             // 
@@ -263,6 +319,7 @@
             button6.TabIndex = 28;
             button6.Text = "Save";
             button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // label12
             // 
@@ -292,45 +349,35 @@
             label7.TabIndex = 6;
             label7.Text = "Date:";
             // 
-            // textBox10
+            // meterNumberTextBox
             // 
-            textBox10.BorderStyle = BorderStyle.None;
-            textBox10.Cursor = Cursors.IBeam;
-            textBox10.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox10.Location = new Point(154, 266);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(200, 15);
-            textBox10.TabIndex = 22;
+            meterNumberTextBox.BorderStyle = BorderStyle.None;
+            meterNumberTextBox.Cursor = Cursors.IBeam;
+            meterNumberTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            meterNumberTextBox.Location = new Point(154, 266);
+            meterNumberTextBox.Name = "meterNumberTextBox";
+            meterNumberTextBox.Size = new Size(200, 15);
+            meterNumberTextBox.TabIndex = 22;
             // 
-            // textBox9
+            // IssuedByTextBox
             // 
-            textBox9.BorderStyle = BorderStyle.None;
-            textBox9.Cursor = Cursors.IBeam;
-            textBox9.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox9.Location = new Point(154, 217);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(200, 15);
-            textBox9.TabIndex = 22;
+            IssuedByTextBox.BorderStyle = BorderStyle.None;
+            IssuedByTextBox.Cursor = Cursors.IBeam;
+            IssuedByTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            IssuedByTextBox.Location = new Point(154, 164);
+            IssuedByTextBox.Name = "IssuedByTextBox";
+            IssuedByTextBox.Size = new Size(200, 15);
+            IssuedByTextBox.TabIndex = 20;
             // 
-            // textBox8
+            // requestedByTextBox
             // 
-            textBox8.BorderStyle = BorderStyle.None;
-            textBox8.Cursor = Cursors.IBeam;
-            textBox8.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox8.Location = new Point(154, 164);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(200, 15);
-            textBox8.TabIndex = 20;
-            // 
-            // textBox7
-            // 
-            textBox7.BorderStyle = BorderStyle.None;
-            textBox7.Cursor = Cursors.IBeam;
-            textBox7.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox7.Location = new Point(154, 105);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(200, 15);
-            textBox7.TabIndex = 19;
+            requestedByTextBox.BorderStyle = BorderStyle.None;
+            requestedByTextBox.Cursor = Cursors.IBeam;
+            requestedByTextBox.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            requestedByTextBox.Location = new Point(154, 105);
+            requestedByTextBox.Name = "requestedByTextBox";
+            requestedByTextBox.Size = new Size(200, 15);
+            requestedByTextBox.TabIndex = 19;
             // 
             // label11
             // 
@@ -438,6 +485,7 @@
             receivingItemCodeComboBox.Name = "receivingItemCodeComboBox";
             receivingItemCodeComboBox.Size = new Size(200, 33);
             receivingItemCodeComboBox.TabIndex = 24;
+            receivingItemCodeComboBox.SelectedIndexChanged += receivingItemCodeComboBox_SelectedIndexChanged_1;
             // 
             // receivingDatePicker
             // 
@@ -616,10 +664,11 @@
             panel1.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCapexStock).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -647,9 +696,8 @@
         private Label label3;
         private Label label2;
         private Label label7;
-        private TextBox textBox9;
-        private TextBox textBox8;
-        private TextBox textBox7;
+        private TextBox IssuedByTextBox;
+        private TextBox requestedByTextBox;
         private Label label11;
         private Label label10;
         private Panel panel10;
@@ -657,22 +705,27 @@
         private Panel panel9;
         private Label label8;
         private Panel panel8;
-        private DataGridView dataGridView2;
-        private Button button8;
-        private Button button5;
+        private DataGridView dataGridViewCapexStock;
+        private Button btnStockReset;
+        private Button btnStockSearch;
         private Panel panel13;
-        private TextBox textBox12;
+        private TextBox searchStockTextBox;
         private Label label13;
-        private TextBox textBox10;
+        private TextBox meterNumberTextBox;
         private Panel panel11;
         private DataGridView dataGridView1;
-        private TextBox textBox11;
-        private Button button9;
+        private TextBox remarksTextBox;
+        private Button btnClearCapexIssuance;
         private Button button6;
         private Label label12;
         private Panel panel12;
         private DateTimePicker receivingDatePicker;
         private DateTimePicker issuanceDatePicker;
         private ComboBox receivingItemCodeComboBox;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem addItemToolStripMenuItem;
+        private ToolStripMenuItem removeToolStripMenuItem;
+        private ComboBox jobOrderTypeComboBox;
+        private ToolStripMenuItem modifyToolStripMenuItem;
     }
 }
