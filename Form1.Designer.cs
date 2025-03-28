@@ -38,8 +38,8 @@
             textBox2 = new TextBox();
             button1 = new Button();
             btnExit = new Button();
-            btnCreateAccount = new Button();
             btnAdminLogin = new Button();
+            btnCreateAccount = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -145,18 +145,6 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
-            // btnCreateAccount
-            // 
-            btnCreateAccount.FlatAppearance.BorderSize = 0;
-            btnCreateAccount.FlatStyle = FlatStyle.Flat;
-            btnCreateAccount.Location = new Point(167, 370);
-            btnCreateAccount.Name = "btnCreateAccount";
-            btnCreateAccount.Size = new Size(126, 23);
-            btnCreateAccount.TabIndex = 8;
-            btnCreateAccount.Text = "Create Account";
-            btnCreateAccount.UseVisualStyleBackColor = true;
-            btnCreateAccount.Click += btnForgot_Click;
-            // 
             // btnAdminLogin
             // 
             btnAdminLogin.FlatAppearance.BorderSize = 0;
@@ -168,6 +156,18 @@
             btnAdminLogin.Text = "Admin";
             btnAdminLogin.UseVisualStyleBackColor = true;
             btnAdminLogin.Click += btnAdminLogin_Click;
+            // 
+            // btnCreateAccount
+            // 
+            btnCreateAccount.FlatAppearance.BorderSize = 0;
+            btnCreateAccount.FlatStyle = FlatStyle.Flat;
+            btnCreateAccount.Location = new Point(167, 370);
+            btnCreateAccount.Name = "btnCreateAccount";
+            btnCreateAccount.Size = new Size(126, 23);
+            btnCreateAccount.TabIndex = 8;
+            btnCreateAccount.Text = "Create Account";
+            btnCreateAccount.UseVisualStyleBackColor = true;
+            btnCreateAccount.Click += btnForgot_Click;
             // 
             // Form1
             // 
@@ -210,7 +210,7 @@
         private Button button1;
         private Button btnExit;
         private TextBox textBox2;
-        private Button btnCreateAccount;
         private Button btnAdminLogin;
+        private Button btnCreateAccount;
     }
 }

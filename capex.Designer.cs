@@ -80,6 +80,9 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            contextMenuStrip2 = new ContextMenuStrip(components);
+            modifyToolStripMenuItem1 = new ToolStripMenuItem();
+            removeToolStripMenuItem1 = new ToolStripMenuItem();
             panel1.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCapexStock).BeginInit();
@@ -87,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            contextMenuStrip2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -124,7 +128,7 @@
             dataGridViewCapexStock.AllowUserToResizeRows = false;
             dataGridViewCapexStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCapexStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCapexStock.ColumnHeadersVisible = false;
+            dataGridViewCapexStock.ContextMenuStrip = contextMenuStrip2;
             dataGridViewCapexStock.Location = new Point(19, 32);
             dataGridViewCapexStock.Name = "dataGridViewCapexStock";
             dataGridViewCapexStock.RowHeadersVisible = false;
@@ -242,7 +246,6 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.Location = new Point(381, 121);
             dataGridView1.Name = "dataGridView1";
@@ -650,6 +653,27 @@
             label1.TabIndex = 0;
             label1.Text = "Capex";
             // 
+            // contextMenuStrip2
+            // 
+            contextMenuStrip2.Items.AddRange(new ToolStripItem[] { modifyToolStripMenuItem1, removeToolStripMenuItem1 });
+            contextMenuStrip2.Name = "contextMenuStrip2";
+            contextMenuStrip2.Size = new Size(181, 70);
+            contextMenuStrip2.Opening += contextMenuStrip2_Opening;
+            // 
+            // modifyToolStripMenuItem1
+            // 
+            modifyToolStripMenuItem1.Name = "modifyToolStripMenuItem1";
+            modifyToolStripMenuItem1.Size = new Size(180, 22);
+            modifyToolStripMenuItem1.Text = "Modify";
+            modifyToolStripMenuItem1.Click += modifyToolStripMenuItem1_Click;
+            // 
+            // removeToolStripMenuItem1
+            // 
+            removeToolStripMenuItem1.Name = "removeToolStripMenuItem1";
+            removeToolStripMenuItem1.Size = new Size(180, 22);
+            removeToolStripMenuItem1.Text = "Remove";
+            removeToolStripMenuItem1.Click += removeToolStripMenuItem1_Click;
+            // 
             // capex
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -671,6 +695,7 @@
             contextMenuStrip1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            contextMenuStrip2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -727,5 +752,8 @@
         private ToolStripMenuItem removeToolStripMenuItem;
         private ComboBox jobOrderTypeComboBox;
         private ToolStripMenuItem modifyToolStripMenuItem;
+        private ContextMenuStrip contextMenuStrip2;
+        private ToolStripMenuItem modifyToolStripMenuItem1;
+        private ToolStripMenuItem removeToolStripMenuItem1;
     }
 }

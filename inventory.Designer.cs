@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             label1 = new Label();
             groupBox3 = new GroupBox();
@@ -38,8 +39,13 @@
             searchTextBox = new TextBox();
             label13 = new Label();
             groupBox2 = new GroupBox();
+            joTypeComboBox = new ComboBox();
             IssuanceDateTimePicker = new DateTimePicker();
             dataGridViewIssuance = new DataGridView();
+            contextMenuStripIssuance = new ContextMenuStrip(components);
+            addItemToolStripMenuItem = new ToolStripMenuItem();
+            modifyToolStripMenuItem = new ToolStripMenuItem();
+            removeToolStripMenuItem = new ToolStripMenuItem();
             remarksTextBox = new TextBox();
             issuanceBtnClear = new Button();
             issuanceBtnSave = new Button();
@@ -59,6 +65,7 @@
             label8 = new Label();
             panel8 = new Panel();
             groupBox1 = new GroupBox();
+            inventoryItemCode = new ComboBox();
             inventoryDateTimePicker = new DateTimePicker();
             quantityTextBox = new TextBox();
             itemDescriptionTextBox = new TextBox();
@@ -74,13 +81,12 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            inventoryItemCode = new ComboBox();
-            joTypeComboBox = new ComboBox();
             panel1.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStock).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewIssuance).BeginInit();
+            contextMenuStripIssuance.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -128,9 +134,11 @@
             // 
             // dataGridViewStock
             // 
+            dataGridViewStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewStock.Location = new Point(19, 32);
             dataGridViewStock.Name = "dataGridViewStock";
+            dataGridViewStock.RowHeadersVisible = false;
             dataGridViewStock.Size = new Size(541, 291);
             dataGridViewStock.TabIndex = 8;
             // 
@@ -224,22 +232,62 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Issuance";
             // 
+            // joTypeComboBox
+            // 
+            joTypeComboBox.FormattingEnabled = true;
+            joTypeComboBox.Location = new Point(154, 201);
+            joTypeComboBox.Name = "joTypeComboBox";
+            joTypeComboBox.Size = new Size(200, 33);
+            joTypeComboBox.TabIndex = 25;
+            // 
             // IssuanceDateTimePicker
             // 
             IssuanceDateTimePicker.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             IssuanceDateTimePicker.Format = DateTimePickerFormat.Short;
             IssuanceDateTimePicker.Location = new Point(154, 42);
             IssuanceDateTimePicker.Name = "IssuanceDateTimePicker";
-            IssuanceDateTimePicker.Size = new Size(123, 27);
+            IssuanceDateTimePicker.Size = new Size(207, 27);
             IssuanceDateTimePicker.TabIndex = 23;
             // 
             // dataGridViewIssuance
             // 
+            dataGridViewIssuance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewIssuance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewIssuance.ContextMenuStrip = contextMenuStripIssuance;
             dataGridViewIssuance.Location = new Point(381, 121);
             dataGridViewIssuance.Name = "dataGridViewIssuance";
+            dataGridViewIssuance.RowHeadersVisible = false;
             dataGridViewIssuance.Size = new Size(299, 188);
             dataGridViewIssuance.TabIndex = 31;
+            dataGridViewIssuance.CellContentClick += dataGridViewIssuance_CellContentClick;
+            // 
+            // contextMenuStripIssuance
+            // 
+            contextMenuStripIssuance.Items.AddRange(new ToolStripItem[] { addItemToolStripMenuItem, modifyToolStripMenuItem, removeToolStripMenuItem });
+            contextMenuStripIssuance.Name = "contextMenuStripIssuance";
+            contextMenuStripIssuance.Size = new Size(124, 70);
+            contextMenuStripIssuance.Opening += contextMenuStripIssuance_Opening;
+            // 
+            // addItemToolStripMenuItem
+            // 
+            addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
+            addItemToolStripMenuItem.Size = new Size(123, 22);
+            addItemToolStripMenuItem.Text = "Add Item";
+            addItemToolStripMenuItem.Click += addItemToolStripMenuItem_Click;
+            // 
+            // modifyToolStripMenuItem
+            // 
+            modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
+            modifyToolStripMenuItem.Size = new Size(123, 22);
+            modifyToolStripMenuItem.Text = "Modify";
+            modifyToolStripMenuItem.Click += modifyToolStripMenuItem_Click;
+            // 
+            // removeToolStripMenuItem
+            // 
+            removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            removeToolStripMenuItem.Size = new Size(123, 22);
+            removeToolStripMenuItem.Text = "Remove";
+            removeToolStripMenuItem.Click += removeToolStripMenuItem_Click;
             // 
             // remarksTextBox
             // 
@@ -449,13 +497,21 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Receiving";
             // 
+            // inventoryItemCode
+            // 
+            inventoryItemCode.FormattingEnabled = true;
+            inventoryItemCode.Location = new Point(160, 150);
+            inventoryItemCode.Name = "inventoryItemCode";
+            inventoryItemCode.Size = new Size(200, 33);
+            inventoryItemCode.TabIndex = 25;
+            // 
             // inventoryDateTimePicker
             // 
             inventoryDateTimePicker.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             inventoryDateTimePicker.Format = DateTimePickerFormat.Short;
             inventoryDateTimePicker.Location = new Point(160, 41);
             inventoryDateTimePicker.Name = "inventoryDateTimePicker";
-            inventoryDateTimePicker.Size = new Size(123, 27);
+            inventoryDateTimePicker.Size = new Size(200, 27);
             inventoryDateTimePicker.TabIndex = 23;
             // 
             // quantityTextBox
@@ -600,22 +656,6 @@
             label2.TabIndex = 5;
             label2.Text = "Date:";
             // 
-            // inventoryItemCode
-            // 
-            inventoryItemCode.FormattingEnabled = true;
-            inventoryItemCode.Location = new Point(160, 150);
-            inventoryItemCode.Name = "inventoryItemCode";
-            inventoryItemCode.Size = new Size(200, 33);
-            inventoryItemCode.TabIndex = 25;
-            // 
-            // joTypeComboBox
-            // 
-            joTypeComboBox.FormattingEnabled = true;
-            joTypeComboBox.Location = new Point(154, 201);
-            joTypeComboBox.Name = "joTypeComboBox";
-            joTypeComboBox.Size = new Size(200, 33);
-            joTypeComboBox.TabIndex = 25;
-            // 
             // inventory
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -633,6 +673,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewIssuance).EndInit();
+            contextMenuStripIssuance.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -688,5 +729,9 @@
         private Label label1;
         private ComboBox joTypeComboBox;
         private ComboBox inventoryItemCode;
+        private ContextMenuStrip contextMenuStripIssuance;
+        private ToolStripMenuItem addItemToolStripMenuItem;
+        private ToolStripMenuItem modifyToolStripMenuItem;
+        private ToolStripMenuItem removeToolStripMenuItem;
     }
 }

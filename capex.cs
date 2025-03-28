@@ -42,6 +42,7 @@ namespace Primewater
                 receivingItemCodeComboBox.DisplayMember = "item_code";
                 receivingItemCodeComboBox.ValueMember = "item_description";
                 receivingItemCodeComboBox.DataSource = dt;
+                receivingItemCodeComboBox.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -59,6 +60,8 @@ namespace Primewater
                 jobOrderTypeComboBox.DisplayMember = "job_order_type";
                 jobOrderTypeComboBox.ValueMember = "job_description";
                 jobOrderTypeComboBox.DataSource = dt;
+                jobOrderTypeComboBox.SelectedIndex = -1;
+
             }
             catch (Exception ex)
             {
@@ -156,6 +159,19 @@ namespace Primewater
                                 cmdInsertStock.ExecuteNonQuery();
                             }
 
+                            // ✅ Save to `history_log`
+                            string historyQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                            VALUES (@actionType, @actionDetail, NOW())";
+
+                            using (MySqlCommand cmdLogHistory = new MySqlCommand(historyQuery, conn, transaction))
+                            {
+                                cmdLogHistory.Parameters.AddWithValue("@actionType", "Capex Receiving");
+                                cmdLogHistory.Parameters.AddWithValue("@actionDetail",
+                                    $"Received {quantity} of {itemDescription} (Item Code: {itemCode}) under GR Number {grnumberTextBox.Text}");
+
+                                cmdLogHistory.ExecuteNonQuery();
+                            }
+
                             // Commit transaction
                             transaction.Commit();
 
@@ -186,6 +202,7 @@ namespace Primewater
         {
             ClearForm();
         }
+
 
         private void ClearForm()
         {
@@ -280,7 +297,12 @@ namespace Primewater
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
+            // Check if DataGridView is empty
+            bool hasRows = dataGridView1.Rows.Count > 0;
 
+            // Enable/Disable Remove and Modify options
+            removeToolStripMenuItem.Enabled = hasRows;
+            modifyToolStripMenuItem.Enabled = hasRows;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -331,11 +353,16 @@ namespace Primewater
             // Create the form for item selection
             Form addItemForm = new Form();
             addItemForm.Text = "Add Item";
-            addItemForm.Size = new Size(350, 250);
+            addItemForm.Size = new Size(400, 250);
             addItemForm.StartPosition = FormStartPosition.CenterParent;
 
+            // Create labels
+            Label itemLabel = new Label() { Text = "Item:", Left = 20, Top = 20, AutoSize = true };
+            Label descriptionLabel = new Label() { Text = "Description:", Left = 20, Top = 60, AutoSize = true };
+            Label quantityLabel = new Label() { Text = "Quantity:", Left = 20, Top = 100, AutoSize = true };
+
             // Create dropdown for items
-            ComboBox itemComboBox = new ComboBox() { Left = 20, Top = 20, Width = 200 };
+            ComboBox itemComboBox = new ComboBox() { Left = 100, Top = 20, Width = 250 };
 
             // Fetch item_code and item_description from capex_stock
             string query = "SELECT item_code, item_description FROM capex_stock";
@@ -346,10 +373,10 @@ namespace Primewater
             itemComboBox.DataSource = dt;
 
             // Create textbox for item description (readonly)
-            TextBox itemDescriptionTextBox = new TextBox() { Left = 20, Top = 60, Width = 300, ReadOnly = true };
+            TextBox itemDescriptionTextBox = new TextBox() { Left = 100, Top = 60, Width = 250, ReadOnly = true };
 
             // Create textbox for quantity
-            TextBox quantityTextBox = new TextBox() { Left = 20, Top = 100, Width = 200 };
+            TextBox quantityTextBox = new TextBox() { Left = 100, Top = 100, Width = 250 };
 
             // Event to update item description when item is selected
             itemComboBox.SelectedIndexChanged += (s, args) =>
@@ -361,7 +388,7 @@ namespace Primewater
             };
 
             // Create OK button
-            Button okButton = new Button() { Text = "OK", Left = 100, Top = 140, Width = 100 };
+            Button okButton = new Button() { Text = "OK", Left = 150, Top = 150, Width = 100 };
             okButton.Click += (s, args) =>
             {
                 if (itemComboBox.SelectedIndex == -1 || string.IsNullOrWhiteSpace(quantityTextBox.Text))
@@ -382,14 +409,18 @@ namespace Primewater
             };
 
             // Add controls to the form
+            addItemForm.Controls.Add(itemLabel);
             addItemForm.Controls.Add(itemComboBox);
+            addItemForm.Controls.Add(descriptionLabel);
             addItemForm.Controls.Add(itemDescriptionTextBox);
+            addItemForm.Controls.Add(quantityLabel);
             addItemForm.Controls.Add(quantityTextBox);
             addItemForm.Controls.Add(okButton);
 
             // Show as dialog
             addItemForm.ShowDialog();
         }
+
 
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -422,82 +453,126 @@ namespace Primewater
 
         private void modifyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show("Please select a row to modify.", "Modify Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (dataGridView1.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a row to modify.", "Modify Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+                string currentItemCode = selectedRow.Cells["item_code"]?.Value?.ToString() ?? "";
+                string currentItemDescription = selectedRow.Cells["item_description"]?.Value?.ToString() ?? "";
+                string currentQuantity = selectedRow.Cells["quantity"]?.Value?.ToString() ?? "0";
+
+                // Create the form for modification
+                Form modifyForm = new Form
+                {
+                    Text = "Modify Item",
+                    Size = new Size(350, 250),
+                    StartPosition = FormStartPosition.CenterParent
+                };
+
+                // Create dropdown for items
+                ComboBox itemComboBox = new ComboBox() { Left = 20, Top = 20, Width = 200 };
+
+                try
+                {
+                    // Fetch item_code and item_description from capex_stock
+                    string query = "SELECT item_code, item_description FROM capex_stock";
+                    DataTable dt = db.ExecuteQuery(query);
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No items found in the database.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    itemComboBox.DisplayMember = "item_code";  // Display item_code in dropdown
+                    itemComboBox.ValueMember = "item_description";  // Store item_description as Value
+                    itemComboBox.DataSource = dt;
+                    itemComboBox.Text = currentItemCode;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading items: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Create textbox for item description (readonly)
+                TextBox itemDescriptionTextBox = new TextBox()
+                {
+                    Left = 20,
+                    Top = 60,
+                    Width = 300,
+                    ReadOnly = true,
+                    Text = currentItemDescription
+                };
+
+                // Create textbox for quantity
+                TextBox quantityTextBox = new TextBox()
+                {
+                    Left = 20,
+                    Top = 100,
+                    Width = 200,
+                    Text = currentQuantity
+                };
+
+                // Event to update item description when item is selected
+                itemComboBox.SelectedIndexChanged += (s, args) =>
+                {
+                    if (itemComboBox.SelectedValue != null)
+                    {
+                        itemDescriptionTextBox.Text = itemComboBox.SelectedValue.ToString();
+                    }
+                };
+
+                // Create OK button
+                Button okButton = new Button() { Text = "OK", Left = 100, Top = 140, Width = 100 };
+                okButton.Click += (s, args) =>
+                {
+                    try
+                    {
+                        if (itemComboBox.SelectedIndex == -1 || string.IsNullOrWhiteSpace(quantityTextBox.Text))
+                        {
+                            MessageBox.Show("Please select an item and enter a quantity.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        if (!int.TryParse(quantityTextBox.Text, out int quantity) || quantity <= 0)
+                        {
+                            MessageBox.Show("Invalid quantity. Enter a positive number.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        // Update selected row
+                        selectedRow.Cells["item_code"].Value = itemComboBox.Text;
+                        selectedRow.Cells["item_description"].Value = itemDescriptionTextBox.Text;
+                        selectedRow.Cells["quantity"].Value = quantity;
+
+                        modifyForm.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating row: " + ex.Message, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                };
+
+                // Add controls to the form
+                modifyForm.Controls.Add(itemComboBox);
+                modifyForm.Controls.Add(itemDescriptionTextBox);
+                modifyForm.Controls.Add(quantityTextBox);
+                modifyForm.Controls.Add(okButton);
+
+                // Show as dialog
+                modifyForm.ShowDialog();
             }
-
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            string currentItemCode = selectedRow.Cells["item_code"].Value.ToString();
-            string currentItemDescription = selectedRow.Cells["item_description"].Value.ToString();
-            string currentQuantity = selectedRow.Cells["quantity"].Value.ToString();
-
-            // Create the form for modification
-            Form modifyForm = new Form();
-            modifyForm.Text = "Modify Item";
-            modifyForm.Size = new Size(350, 250);
-            modifyForm.StartPosition = FormStartPosition.CenterParent;
-
-            // Create dropdown for items
-            ComboBox itemComboBox = new ComboBox() { Left = 20, Top = 20, Width = 200 };
-
-            // Fetch item_code and item_description from capex_stock
-            string query = "SELECT item_code, item_description FROM capex_stock";
-            DataTable dt = db.ExecuteQuery(query);
-
-            itemComboBox.DisplayMember = "item_code"; // Display item_code in dropdown
-            itemComboBox.ValueMember = "item_description"; // Store item_description as Value
-            itemComboBox.DataSource = dt;
-            itemComboBox.Text = currentItemCode;
-
-            // Create textbox for item description (readonly)
-            TextBox itemDescriptionTextBox = new TextBox() { Left = 20, Top = 60, Width = 300, ReadOnly = true, Text = currentItemDescription };
-
-            // Create textbox for quantity
-            TextBox quantityTextBox = new TextBox() { Left = 20, Top = 100, Width = 200, Text = currentQuantity };
-
-            // Event to update item description when item is selected
-            itemComboBox.SelectedIndexChanged += (s, args) =>
+            catch (Exception ex)
             {
-                if (itemComboBox.SelectedValue != null)
-                {
-                    itemDescriptionTextBox.Text = itemComboBox.SelectedValue.ToString();
-                }
-            };
-
-            // Create OK button
-            Button okButton = new Button() { Text = "OK", Left = 100, Top = 140, Width = 100 };
-            okButton.Click += (s, args) =>
-            {
-                if (itemComboBox.SelectedIndex == -1 || string.IsNullOrWhiteSpace(quantityTextBox.Text))
-                {
-                    MessageBox.Show("Please select an item and enter a quantity.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!int.TryParse(quantityTextBox.Text, out int quantity) || quantity <= 0)
-                {
-                    MessageBox.Show("Invalid quantity. Enter a positive number.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Update selected row
-                selectedRow.Cells["item_code"].Value = itemComboBox.Text;
-                selectedRow.Cells["item_description"].Value = itemDescriptionTextBox.Text;
-                selectedRow.Cells["quantity"].Value = quantity;
-
-                modifyForm.Close();
-            };
-
-            // Add controls to the form
-            modifyForm.Controls.Add(itemComboBox);
-            modifyForm.Controls.Add(itemDescriptionTextBox);
-            modifyForm.Controls.Add(quantityTextBox);
-            modifyForm.Controls.Add(okButton);
-
-            // Show as dialog
-            modifyForm.ShowDialog();
+                MessageBox.Show("Unexpected error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -589,12 +664,25 @@ namespace Primewater
                                 }
                             }
 
+                            // ✅ Save to `history_log`
+                            string historyQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                            VALUES (@actionType, @actionDetail, NOW())";
+
+                            using (MySqlCommand cmdLogHistory = new MySqlCommand(historyQuery, conn, transaction))
+                            {
+                                cmdLogHistory.Parameters.AddWithValue("@actionType", "Capex Issuance");
+                                cmdLogHistory.Parameters.AddWithValue("@actionDetail",
+                                    $"Issued items for Meter Number: {meterNumberTextBox.Text}\n" + string.Join("\n, historyDetails"));
+
+                                cmdLogHistory.ExecuteNonQuery();
+                            }
+
                             // Commit transaction if all queries succeed
                             transaction.Commit();
                             MessageBox.Show("Issuance record saved successfully and stock updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Clear form and DataGridView
-                            ClearForm();
+                            ClearIssuance();
                         }
                         catch (Exception ex)
                         {
@@ -610,7 +698,7 @@ namespace Primewater
             }
         }
 
-        private void btnClearCapexIssuance_Click(object sender, EventArgs e)
+        private void ClearIssuance()
         {
             issuanceDatePicker.Value = DateTime.Now;
             requestedByTextBox.Clear();
@@ -619,6 +707,31 @@ namespace Primewater
             meterNumberTextBox.Clear();
             remarksTextBox.Clear();
             dataGridView1.Rows.Clear(); // Clear DataGridView rows
+        }
+
+        private void btnClearCapexIssuance_Click(object sender, EventArgs e)
+        {
+            ClearIssuance();
+        }
+
+        private void searchStockTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void modifyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

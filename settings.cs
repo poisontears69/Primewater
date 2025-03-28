@@ -90,6 +90,17 @@ namespace Primewater
 
                 if (rowsAffected > 0)
                 {
+                    // Insert into history_log
+                    string insertHistoryQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                          VALUES (@actionType, @actionDetail, NOW())";
+                    MySqlParameter[] historyParams =
+                    {
+                        new MySqlParameter("@actionType", "Insert"),
+                        new MySqlParameter("@actionDetail", $"Added new job order type: {jobCode}")
+                    };
+
+                    db.ExecuteNonQuery(insertHistoryQuery, historyParams); // Save history log
+
                     MessageBox.Show("Job order type saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     jobCodeTB.Clear();
                     jobDescTB.Clear();
@@ -174,12 +185,26 @@ namespace Primewater
 
                 if (rowsAffected > 0)
                 {
+
+                    // Insert into history_log
+                    string insertHistoryQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                          VALUES (@actionType, @actionDetail, NOW())";
+                    MySqlParameter[] historyParams =
+                    {
+                        new MySqlParameter("@actionType", "Insert"),
+                        new MySqlParameter("@actionDetail", $"Added new item: {itemCode} ({itemType})")
+                    };
+
+                    db.ExecuteNonQuery(insertHistoryQuery, historyParams); // Save history log
+
                     MessageBox.Show("Item saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     itemCodeTB.Clear();
                     itemDescTB.Clear();
                     radioCapex.Checked = false;
                     radioInventory.Checked = false;
-                    dataGridView2.Refresh(); // Force refresh
+
+                    // Reload DataGridView based on selected item type
+                    LoadItemsData(itemType);
                 }
                 else
                 {
@@ -237,12 +262,12 @@ namespace Primewater
 
                 int jobOrderId = Convert.ToInt32(row.Cells["job_order_id"].Value);
                 string jobOrderType = row.Cells["job_order_type"].Value.ToString();
-                string jobOrderDesc = row.Cells["job_order_description"].Value.ToString();
+                string oldJobOrderDesc = row.Cells["job_order_description"].Value.ToString();
 
                 string newJobOrderDesc = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Enter new job order description:", "Modify Job Order", jobOrderDesc);
+                    "Enter new job order description:", "Modify Job Order", oldJobOrderDesc);
 
-                if (!string.IsNullOrEmpty(newJobOrderDesc))
+                if (!string.IsNullOrEmpty(newJobOrderDesc) && newJobOrderDesc != oldJobOrderDesc)
                 {
                     try
                     {
@@ -251,14 +276,30 @@ namespace Primewater
                         {
                     new MySqlParameter("@newDesc", newJobOrderDesc),
                     new MySqlParameter("@jobOrderId", jobOrderId)
-                };
+                        };
 
                         int rowsAffected = db.ExecuteNonQuery(query, parameters);
 
                         if (rowsAffected > 0)
                         {
+                            // Insert into history_log
+                            string insertHistoryQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                                  VALUES (@actionType, @actionDetail, NOW())";
+                            MySqlParameter[] historyParams =
+                            {
+                                new MySqlParameter("@actionType", "Update"),
+                                new MySqlParameter("@actionDetail",
+                            $"Modified job order: {jobOrderType} from '{oldJobOrderDesc}' to '{newJobOrderDesc}'")
+                            };
+
+                            db.ExecuteNonQuery(insertHistoryQuery, historyParams); // Save history log
+
                             MessageBox.Show("Job order updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadData(); // Refresh DataGridView
+                        }
+                        else
+                        {
+                            MessageBox.Show("No changes were made.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
@@ -266,8 +307,17 @@ namespace Primewater
                         MessageBox.Show("Error updating job order: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                {
+                    MessageBox.Show("No changes detected or invalid input.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a job order to modify.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -285,6 +335,7 @@ namespace Primewater
                 {
                     try
                     {
+                        // Delete job order
                         string query = "DELETE FROM job_orders WHERE job_order_id = @jobOrderId";
                         MySqlParameter[] parameters =
                         {
@@ -295,8 +346,23 @@ namespace Primewater
 
                         if (rowsAffected > 0)
                         {
+                            // Insert into history_log
+                            string insertHistoryQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                                  VALUES (@actionType, @actionDetail, NOW())";
+                            MySqlParameter[] historyParams =
+                            {
+                        new MySqlParameter("@actionType", "Delete"),
+                        new MySqlParameter("@actionDetail", $"Deleted job order: {jobOrderType}")
+                    };
+
+                            db.ExecuteNonQuery(insertHistoryQuery, historyParams); // Save history log
+
                             MessageBox.Show("Job order deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadData(); // Refresh DataGridView
+                        }
+                        else
+                        {
+                            MessageBox.Show("No job order found to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
@@ -305,7 +371,12 @@ namespace Primewater
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Please select a job order to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void LoadItemsData(string itemType)
         {
@@ -366,15 +437,16 @@ namespace Primewater
 
                 int itemId = Convert.ToInt32(row.Cells["item_id"].Value);
                 string itemCode = row.Cells["item_code"].Value.ToString();
-                string itemDesc = row.Cells["item_description"].Value.ToString();
+                string itemDesc = row.Cells["item_description"].Value.ToString(); // Old description
 
                 string newItemDesc = Microsoft.VisualBasic.Interaction.InputBox(
                     "Enter new description:", "Modify Item", itemDesc);
 
-                if (!string.IsNullOrEmpty(newItemDesc))
+                if (!string.IsNullOrEmpty(newItemDesc) && newItemDesc != itemDesc)
                 {
                     try
                     {
+                        // Update item description
                         string query = "UPDATE items SET item_description = @newDesc WHERE item_id = @id";
                         MySqlParameter[] parameters =
                         {
@@ -386,8 +458,23 @@ namespace Primewater
 
                         if (rowsAffected > 0)
                         {
+                            // Insert into history_log
+                            string insertHistoryQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                                  VALUES (@actionType, @actionDetail, NOW())";
+                            MySqlParameter[] historyParams =
+                            {
+                        new MySqlParameter("@actionType", "Modify"),
+                        new MySqlParameter("@actionDetail", $"Updated item description: {itemDesc} → {newItemDesc}")
+                    };
+
+                            db.ExecuteNonQuery(insertHistoryQuery, historyParams); // Save history log
+
                             MessageBox.Show("Item updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            dataGridView2.Refresh(); // Force refresh
+                            dataGridView2.Refresh(); // Refresh DataGridView
+                        }
+                        else
+                        {
+                            MessageBox.Show("No changes were made.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
@@ -395,8 +482,17 @@ namespace Primewater
                         MessageBox.Show("Error updating item: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                {
+                    MessageBox.Show("No changes detected.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to modify.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -419,18 +515,34 @@ namespace Primewater
                 {
                     try
                     {
-                        string query = "DELETE FROM items WHERE item_id = @id";
-                        MySqlParameter[] parameters =
+                        // Insert into history_log BEFORE deleting
+                        string insertHistoryQuery = @"INSERT INTO history_log (action_type, action_detail, action_date) 
+                                              VALUES (@actionType, @actionDetail, NOW())";
+                        MySqlParameter[] historyParams =
+                        {
+                    new MySqlParameter("@actionType", "Delete"),
+                    new MySqlParameter("@actionDetail", $"Deleted item: {itemCode}")
+                };
+
+                        db.ExecuteNonQuery(insertHistoryQuery, historyParams); // Save history log
+
+                        // Delete item
+                        string deleteQuery = "DELETE FROM items WHERE item_id = @id";
+                        MySqlParameter[] deleteParams =
                         {
                     new MySqlParameter("@id", itemId)
                 };
 
-                        int rowsAffected = db.ExecuteNonQuery(query, parameters);
+                        int rowsAffected = db.ExecuteNonQuery(deleteQuery, deleteParams);
 
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Item deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            dataGridView2.Refresh(); // Force refresh
+                            dataGridView2.Refresh(); // Refresh DataGridView
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
@@ -439,7 +551,12 @@ namespace Primewater
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Please select an item to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void radioCapex_CheckedChanged(object sender, EventArgs e)
         {
@@ -460,6 +577,11 @@ namespace Primewater
         }
 
         private void dataGridView2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
 
         }

@@ -161,19 +161,20 @@
             // 
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { modifyToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(113, 48);
+            contextMenuStrip1.Size = new Size(181, 70);
+            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // modifyToolStripMenuItem
             // 
             modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
-            modifyToolStripMenuItem.Size = new Size(112, 22);
+            modifyToolStripMenuItem.Size = new Size(180, 22);
             modifyToolStripMenuItem.Text = "Modify";
             modifyToolStripMenuItem.Click += modifyToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(112, 22);
+            deleteToolStripMenuItem.Size = new Size(180, 22);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 

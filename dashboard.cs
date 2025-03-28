@@ -13,7 +13,7 @@ namespace Primewater
 {
     public partial class dashboard : Form
     {
-        private graphs home;
+        private graph home;
         private capex capex;
         private inventory inventory;
         private history history;
@@ -147,7 +147,7 @@ namespace Primewater
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             if (home == null)
-                home = new graphs();
+                home = new graph();
             LoadForm(home);
         }
 

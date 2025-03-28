@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Primewater
 {
-    public partial class graphs: Form
+    public partial class graph: Form
     {
-        public graphs()
+        public graph()
         {
             InitializeComponent();
         }
